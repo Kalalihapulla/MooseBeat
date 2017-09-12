@@ -2,6 +2,9 @@
 
 const fs = require('fs');
 const express = require('express');
+const bodyParser = require('body-parser');
+
+
 const { createBundleRenderer } = require('vue-server-renderer');
 
 const bundleRenderer = createBundleRenderer(
@@ -13,10 +16,21 @@ const bundleRenderer = createBundleRenderer(
   }
 );
 
-// Create the express app.
+// Create the express app and router.
 const app = express();
+const router = express.Router(); 
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+router.get('/', function(req, res) {
+  res.json({ message: 'hooray! welcome to our api!',
+              geebo: 'lul'  });   
+});
+
+// routes will be prefixed with /api
+app.use('/api', router);
 // Serve static assets from ./dist on the /dist route.
+
 app.use('/dist', express.static('dist'));
 
 // Render all other routes with the bundleRenderer.
