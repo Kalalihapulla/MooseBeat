@@ -42,6 +42,7 @@ router.get('/user', function (req, res) {
     password: 'hunter2',
     created_at : new Date()
   });
+  chris.dudify();
   chris.save(function(err) {
     if (err) throw err;
   
