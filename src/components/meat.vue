@@ -1,22 +1,21 @@
 <template>
-  <div id="app">
-    <!-- the router outlet, where all matched components would ber viewed -->
+  <div id="meat">
 
-    <router-link v-bind:to="'/about'">About</router-link>
+    <h1>Meat</h1>
 
-    <router-view></router-view>
+    <router-link v-bind:to="'/'">Moose</router-link>
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'meat'
 }
 </script>
 <!-- styling for the component -->
 <style>
-#app {
+#about {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

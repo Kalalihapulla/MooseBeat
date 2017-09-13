@@ -6,6 +6,9 @@ export default context => {
   return Promise.resolve(
     new Vue({
       render: h => h(App)
+      
     })
+    
+    
   );
 }
