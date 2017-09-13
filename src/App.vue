@@ -12,7 +12,9 @@
 <script>
 export default {
   name: 'app',
+
 }
+
 </script>
 <!-- styling for the component -->
 <style>
