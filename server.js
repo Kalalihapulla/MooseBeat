@@ -3,6 +3,12 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+// Create the express app and router.
+const app = express();
+const router = express.Router();
+// Mongoose
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 
 
 const { createBundleRenderer } = require('vue-server-renderer');
@@ -16,20 +22,40 @@ const bundleRenderer = createBundleRenderer(
   }
 );
 
-// Create the express app and router.
-const app = express();
-const router = express.Router(); 
 
+
+//REST API
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-router.get('/', function(req, res) {
-  res.json({ message: 'hooray! welcome to our api!',
-              geebo: 'lul'  });   
+router.get('/', function (req, res) {
+  res.json({
+    message: 'hooray! welcsome to our api!',
+    geebo: 'lul'
+  });
+});
+
+router.get('/user', function (req, res) {
+  var User = require('./src/models/user.js');
+  var chris = new User({
+    name: 'Test',
+    username: 'Forsen',
+    password: 'hunter2',
+    created_at : new Date()
+  });
+  chris.save(function(err) {
+    if (err) throw err;
+  
+    console.log('User saved successfully!');
+  });
+
+  res.json({
+    message: 'create',
+    geebo: 'lul'
+  });
 });
 
 // routes will be prefixed with /api
 app.use('/api', router);
-// Serve static assets from ./dist on the /dist route.
 
 app.use('/dist', express.static('dist'));
 
@@ -38,7 +64,7 @@ app.get('*', (req, res) => {
   bundleRenderer
     // Renders directly to the response stream.
     // The argument is passed as "context" to main.server.js in the SSR bundle.
-    .renderToStream({url: req.path})
+    .renderToStream({ url: req.path })
     .pipe(res);
 });
 
