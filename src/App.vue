@@ -28,7 +28,7 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Eds boys',
+      msg: 'Esdddds boysddss Hello',
      
       
       
