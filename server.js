@@ -36,14 +36,19 @@ router.get('/', function (req, res) {
 
 router.get('/user', function (req, res) {
   var User = require('./src/models/user.js');
-  var chris = new User({
+  var userN = new User({
     name: 'Test',
     username: 'Forsen',
     password: 'hunter2',
     created_at : new Date()
   });
-  chris.dudify();
-  chris.save(function(err) {
+  userN.dudify();
+  userN.save(function(err) {
+/*     userN.resetCount(function(err, nextCount) {
+      
+           
+      
+             }); */
     if (err) throw err;
 
     console.log('User saved successfully!');
@@ -51,6 +56,14 @@ router.get('/user', function (req, res) {
 
   res.json({
     message: 'create',
+    geebo: 'lul'
+  });
+});
+
+router.get('/user/:name', function (req, res) {
+
+  res.json({
+    message: req.params.name,
     geebo: 'lul'
   });
 });

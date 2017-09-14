@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const autoIncrement = require('mongoose-auto-increment');
+const connection = mongoose.createConnection('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
+autoIncrement.initialize(connection);
 
 // create a schema
 var userSchema = new Schema({
@@ -20,6 +23,9 @@ userSchema.methods.dudify = function() {
   };
 // the schema is useless so far
 // we need to create a model using it
+userSchema.plugin(autoIncrement.plugin,'User', {
+  startAt: 0
+});
 var User = mongoose.model('User', userSchema,'users');
 
 // make this available to our users in our Node applications

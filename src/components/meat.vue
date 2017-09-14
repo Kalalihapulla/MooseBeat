@@ -4,7 +4,7 @@
     <h1>Meat</h1>
 
     <router-link v-bind:to="'/'">Moose</router-link>
-
+  <div>User {{ $route.params.name }}</div>
   </div>
 </template>
 

@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+
+// Import the styles directly. (Or you could add them via script tags.)
+
+
 //import the vue router
 import VueRouter from 'vue-router'
 //tell vue to use the router
-Vue.use(VueRouter)
+
+Vue.use(VueRouter);
 
 //import the hello component
 import moose from './components/moose.vue'
