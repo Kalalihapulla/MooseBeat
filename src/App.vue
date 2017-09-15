@@ -9,6 +9,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'app',
@@ -16,6 +17,7 @@ export default {
 }
 
 </script>
+
 <!-- styling for the component -->
 <style>
 #app {

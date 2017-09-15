@@ -15,6 +15,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
+           
           }
           // other vue-loader options go here
         }
@@ -24,6 +25,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/
       },
+ 
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
