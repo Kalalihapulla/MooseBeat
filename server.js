@@ -38,7 +38,7 @@ router.get('/user', function (req, res) {
   var User = require('./src/models/user.js');
   var userN = new User({
     name: 'Test',
-    username: 'Forsen',
+    username: 'Forsens',
     password: 'hunter2',
     created_at : new Date()
   });
@@ -69,6 +69,8 @@ router.get('/user/:name', function (req, res) {
 });
 
 // routes will be prefixed with /api
+app.use(express.static('files'));
+app.use('/static', express.static('files'));
 app.use('/api', router);
 
 app.use('/dist', express.static('dist'));

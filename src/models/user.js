@@ -4,10 +4,10 @@ const autoIncrement = require('mongoose-auto-increment');
 const connection = mongoose.createConnection('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 autoIncrement.initialize(connection);
 
-// create a schema
+// create a schema  unique: true 
 var userSchema = new Schema({
   name: String,
-  username: { type: String, required: true, unique: true },
+  username: { type: String, required: true},
   password: { type: String, required: true },
   admin: Boolean,
   location: String,
