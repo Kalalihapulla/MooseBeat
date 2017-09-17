@@ -69,8 +69,8 @@ router.get('/user/:name', function (req, res) {
 });
 
 // routes will be prefixed with /static
-app.use(express.static('files'));
-app.use('/static', express.static('files'));
+app.use(express.static('./src/files'));
+app.use('/static', express.static('./src/files'));
 
 // routes will be prefixed with /api
 app.use('/api', router);
