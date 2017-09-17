@@ -68,9 +68,11 @@ router.get('/user/:name', function (req, res) {
   });
 });
 
-// routes will be prefixed with /api
+// routes will be prefixed with /static
 app.use(express.static('files'));
 app.use('/static', express.static('files'));
+
+// routes will be prefixed with /api
 app.use('/api', router);
 
 app.use('/dist', express.static('dist'));

@@ -1,17 +1,37 @@
 <template>
-  <b-card no-block>
-    <b-tabs>
-      <b-tab title="Tab 1">
-        Tab 1 Contents
-      </b-tab>
-      <b-tab title="Tab 2">
-        Tab 2 Contents <b-button href = "static/monka.jpg" size="md">Boop</b-button>
-      </b-tab>
-      <b-tab title="Tab 3">
-      Monkas
-      </b-tab>
-    </b-tabs>
-  </b-card>
+ <header class="intro-header">
+        <div class="container">
+          <div class="intro-message">
+            <h1>MooseBajs</h1>
+            <h3>A Template by Start Bootstrap</h3>
+            <a href=".\static\img\monka.jpg">www</a>
+            <br>
+            <router-link v-bind:to="'/moose'">Meat</router-link>
+            <hr class="intro-divider">
+            <ul class="list-inline intro-social-buttons">
+              <li class="list-inline-item">
+                <a href="#" class="btn btn-secondary btn-lg">
+                  <i class="fa fa-twitter fa-fw"></i>
+                  <span class="network-name">Twitter</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#" class="btn btn-secondary btn-lg">
+                  <i class="fa fa-github fa-fw"></i>
+                  <span class="network-name">Github</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#" class="btn btn-secondary btn-lg">
+                  <i class="fa fa-linkedin fa-fw"></i>
+                  <span class="network-name">Linkedin</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      
 </template>
 
 <script>

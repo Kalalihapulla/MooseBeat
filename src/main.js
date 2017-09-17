@@ -17,9 +17,9 @@ import meat from './components/meat.vue'
 
 const routes = [
   
-  { path: '/', component: moose },
+  { path: '/', component: meat },
   
-  { path: '/meat', component: meat }
+  { path: '/moose', component: moose }
 ]
 
 // Create the router instance and pass the `routes` option
