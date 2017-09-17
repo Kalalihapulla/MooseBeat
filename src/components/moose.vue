@@ -1,20 +1,27 @@
 <template>
   <div class="moose">
 
-    <h1>Moose</h1>
- 
-    <router-link v-bind:to="'/meat'">Meat</router-link>
+    <h1>Register</h1>
+    <b-btn v-b-modal="'regform'">Register</b-btn>
+    <register></register>
+
 
   </div>
 </template>
 <script>
+import register from './register.vue'
+
 export default {
   name: 'moose',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+    register
   }
+  
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
