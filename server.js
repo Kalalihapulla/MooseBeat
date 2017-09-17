@@ -3,9 +3,10 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-// Create the express app and router.
+// Create the express app,router and request.
 const app = express();
 const router = express.Router();
+const request = require('request');
 // Mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 router.get('/', function (req, res) {
   res.json({
-    message: 'hooray! welcsome to our api!',
+    message: 'hooray! welcome to our api!',
     geebo: 'lul'
   });
 });
@@ -67,6 +68,43 @@ router.get('/user/:name', function (req, res) {
     geebo: 'lul'
   });
 });
+router.get('/albums/:artist/:title', function (req, res) {
+
+  request.get({ url: "http://api.onemusicapi.com/20151208/release?title="+req.params.title+"&artist="+req.params.artist+"&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1"},      function(error, response, body) { 
+    if (!error && response.statusCode == 200) { 
+
+    
+       
+         let obj = JSON.parse(body); 
+         let firstObj = obj[0];
+         console.log(firstObj.title);
+        
+
+          let Album = require('./src/models/album.js');
+          let albumN = new Album({
+            title: firstObj.title ,
+            artist: firstObj.artist,
+            genre: firstObj.genre,
+            media: firstObj.media,
+            year: firstObj.year
+          });
+          res.json(JSON.parse(body));
+
+          albumN.save(function(err) {
+            /*     userN.resetCount(function(err, nextCount) {
+                  
+                       
+                  
+                         }); */
+                if (err) throw err;
+            
+                console.log('Album saved successfully!');
+              });
+       } 
+   });
+  
+
+  });
 
 // routes will be prefixed with /static
 app.use(express.static('./src/files'));
