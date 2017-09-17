@@ -1,11 +1,55 @@
 <template>
   <div id="app">
+    
+          <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="#">MooseBeat</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.twitch.tv/forsenlol">Memes</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
     <!-- the router outlet, where all matched components would ber viewed -->
 
-    <router-link v-bind:to="'/about'">About</router-link>
+   <!--  <router-link v-bind:to="'/about'">About</router-link> -->
 
     <router-view></router-view>
-
+    <footer>
+        <div class="container">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#">Home</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#about">About</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#services">Services</a>
+            </li>
+            <li class="footer-menu-divider list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+          <p class="copyright text-muted small">Copyright &copy; Dead Moose Meat 2017. All Rights Reserved</p>
+        </div>
+      </footer>
   </div>
 </template>
 
