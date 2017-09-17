@@ -15,18 +15,24 @@
                   <router-link class="nav-link" v-bind:to="'/moose'">Moose</router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" v-bind:to="'/meat'">Meat</router-link>
+                  <router-link class="nav-link" v-bind:to="'/'">Meat</router-link>
                 </li>
+                
                 
               </ul>
             </div>
           </div>
         </nav>
     <!-- the router outlet, where all matched components would ber viewed -->
-
+  
    <!--  <router-link v-bind:to="'/about'">About</router-link> -->
-
+  
+ <div>
     <router-view></router-view>
+  </div>
+    
+    
+   
     <footer>
         <div class="container">
           <ul class="list-inline">

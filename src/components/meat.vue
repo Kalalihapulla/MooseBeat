@@ -3,8 +3,16 @@
         <div class="container">
           <div class="intro-message">
             <h1>MooseBajs</h1>
-         
-           
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+            <h1>MooseBajs</h1>
+
+
           </div>
         </div>
       </header>
