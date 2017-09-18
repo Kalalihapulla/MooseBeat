@@ -12,12 +12,12 @@ Vue.use(VueRouter);
 //import the hello component
 import moose from './components/moose.vue'
 //import the about component
-import meat from './components/meat.vue'
+import search from './components/search.vue'
 //define your routes
 
 const routes = [
   
-  { path: '/', component: meat },
+  { path: '/', component: search },
   
   { path: '/moose', component: moose }
 ]

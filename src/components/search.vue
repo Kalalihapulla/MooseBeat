@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'meat'
+  name: 'search'
 }
 </script>
 <!-- styling for the component -->
