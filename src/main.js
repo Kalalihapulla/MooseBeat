@@ -10,7 +10,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 //import the hello component
-import moose from './components/moose.vue'
+import profile from './components/profile.vue'
 //import the about component
 import search from './components/search.vue'
 //define your routes
@@ -19,7 +19,7 @@ const routes = [
   
   { path: '/', component: search },
   
-  { path: '/moose', component: moose }
+  { path: '/profile', component: profile }
 ]
 
 // Create the router instance and pass the `routes` option

@@ -1,5 +1,5 @@
 <template>
-  <div class="moose">
+  <div class="profile">
 
     <h1>Register</h1>
     <b-btn v-b-modal="'regform'">Register</b-btn>
@@ -12,7 +12,7 @@
 import register from './register.vue'
 
 export default {
-  name: 'moose',
+  name: 'profile',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
