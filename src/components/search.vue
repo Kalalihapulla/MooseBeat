@@ -56,7 +56,7 @@ export default {
 
     handleSearch() {
 
-      alert(this.searchValue);
+  
       axios.get("http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=1d9ea39e70e3476140c180593a2ae5bd44b65f12")
         .then((response) => {
 
