@@ -14,6 +14,7 @@
     "watch:server": "nodemon server.js --watch \"./dist\""
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "bootstrap": "^3.3.7",
     "bootstrap-vue": "^1.0.0-beta.7",
