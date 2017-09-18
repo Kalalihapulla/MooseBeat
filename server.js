@@ -68,6 +68,8 @@ router.get('/user/create/:name/:password', function (req, res) {
     created_at: new Date()
   });
 
+
+
   userN.save(function (err) {
     /*     userN.resetCount(function(err, nextCount) {
                    }); */
@@ -80,6 +82,29 @@ router.get('/user/create/:name/:password', function (req, res) {
     message: 'create',
     geebo: 'lul'
   });
+});
+
+router.post('/user/create/', function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  const User = require('./src/models/user.js');
+  let userN = new User({
+
+    username: req.params.username,
+    password: req.params.password,
+    created_at: new Date()
+  });
+  //mimic a slow network connection
+  setTimeout(function(){
+
+      res.send(JSON.stringify({
+          username: req.body.username || null,
+          password: req.body.password || null
+      }));
+
+  }, 1000)
+
+  //debugging output for the terminal
+  console.log('you posted: First Name: ' + req.body.firstName + ', Last Name: ' + req.body.lastName);
 });
 
 router.get('/user/get/', function (req, res) {
@@ -103,6 +128,7 @@ router.get('/user/get/:_id', function (req, res) {
 
 
 });
+
 
 
 router.get('/albums/:artist/:title', function (req, res) {
