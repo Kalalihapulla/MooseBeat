@@ -36,20 +36,17 @@ router.get('/', function (req, res) {
 });
 
 router.get('/user', function (req, res) {
-  var User = require('./src/models/user.js');
-  var userN = new User({
-    name: 'Test',
-    username: 'Forsens',
+  const User = require('./src/models/user.js');
+  let userN = new User({
+    username: 'Forsen',
     password: 'hunter2',
-    created_at : new Date()
+    created_at: new Date()
   });
   userN.dudify();
-  userN.save(function(err) {
-/*     userN.resetCount(function(err, nextCount) {
-      
-           
-      
-             }); */
+  userN.save(function (err) {
+    /*     userN.resetCount(function(err, nextCount) {
+          
+                 }); */
     if (err) throw err;
 
     console.log('User saved successfully!');
@@ -61,50 +58,90 @@ router.get('/user', function (req, res) {
   });
 });
 
-router.get('/user/:name', function (req, res) {
+router.get('/user/create/:name/:password', function (req, res) {
+
+  const User = require('./src/models/user.js');
+  let userN = new User({
+
+    username: req.params.name,
+    password: req.params.password,
+    created_at: new Date()
+  });
+
+  userN.save(function (err) {
+    /*     userN.resetCount(function(err, nextCount) {
+                   }); */
+    if (err) throw err;
+
+    console.log('User saved successfully!');
+  });
 
   res.json({
-    message: req.params.name,
+    message: 'create',
     geebo: 'lul'
   });
 });
-router.get('/albums/:artist/:title', function (req, res) {
 
-  request.get({ url: "http://api.onemusicapi.com/20151208/release?title="+req.params.title+"&artist="+req.params.artist+"&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1"},      function(error, response, body) { 
-    if (!error && response.statusCode == 200) { 
+router.get('/user/get/', function (req, res) {
 
-    
-       
-         let obj = JSON.parse(body); 
-         let firstObj = obj[0];
-         console.log(firstObj.title);
-        
+  const User = require('./src/models/user.js');
+  User.find(function (err, users) {
+    if (err) return console.error(err);
+    res.json({ users });
+  });
+});
 
-          let Album = require('./src/models/album.js');
-          let albumN = new Album({
-            title: firstObj.title ,
-            artist: firstObj.artist,
-            genre: firstObj.genre,
-            media: firstObj.media,
-            year: firstObj.year
-          });
-          res.json(JSON.parse(body));
+router.get('/user/get/:_id', function (req, res) {
+  const User = require('./src/models/user.js');
 
-          albumN.save(function(err) {
-            /*     userN.resetCount(function(err, nextCount) {
-                  
-                       
-                  
-                         }); */
-                if (err) throw err;
-            
-                console.log('Album saved successfully!');
-              });
-       } 
-   });
-  
+  User.find(function (err, users) {
+    if (err) return console.error(err);
+
+    User.find({ _id: req.params._id }, callback);
 
   });
+
+
+});
+
+
+router.get('/albums/:artist/:title', function (req, res) {
+
+  request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + req.params.title + "&artist=" + req.params.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+
+
+
+      let obj = JSON.parse(body);
+      let firstObj = obj[0];
+      console.log(firstObj.title);
+
+
+      let Album = require('./src/models/album.js');
+      let albumN = new Album({
+        title: firstObj.title,
+        artist: firstObj.artist,
+        genre: firstObj.genre,
+        media: firstObj.media,
+        year: firstObj.year
+      });
+      res.json(JSON.parse(body));
+
+      albumN.save(function (err) {
+        /*     userN.resetCount(function(err, nextCount) {
+              
+                   
+              
+                     }); */
+        if (err) throw err;
+
+        console.log('Album saved successfully!');
+      });
+    }
+  });
+
+
+});
 
 // routes will be prefixed with /static
 app.use(express.static('./src/files'));

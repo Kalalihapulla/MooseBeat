@@ -11,7 +11,7 @@ var albumSchema = new Schema({
   artist: String,
   genre: String,
   media:  [{}],
-  year: Date
+  year: String
 });
 
 
