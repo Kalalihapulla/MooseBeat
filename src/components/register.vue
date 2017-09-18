@@ -3,11 +3,7 @@
         <div>
 
             <!-- Modal Component -->
-            <b-modal id="regform"
-                ref="regform"
-                title="Submit your account information" 
-                @ok="handleOk" 
-                @shown="clearData">
+            <b-modal id="regform" ref="regform" title="Submit your account information" @ok="handleOk" @shown="clearData">
                 <form @submit.stop.prevent="handleSubmit">
                     <b-form-input type="text" value="" placeholder="Enter your name" v-model="name"></b-form-input>
                     <b-form-input type="password" placeholder="Enter your password" v-model="pass"></b-form-input>
@@ -15,12 +11,12 @@
                 </form>
             </b-modal>
         </div>
-        </div>
+    </div>
 </template>
 <script>
 import axios from 'axios';
 export default {
-    
+
     name: 'register',
 
     data: {
@@ -40,7 +36,7 @@ export default {
             e.cancel();
             if (!this.name) {
                 alert('Please enter your name');
-            } 
+            }
             else if (!this.pass) {
                 alert('Please enter your password');
             }
@@ -57,17 +53,26 @@ export default {
 
             else {
                 this.handleSubmit()
-                
+
             }
         },
         handleSubmit() {
-           
-           alert(this.name);
+
+            alert(this.name);
+            axios.get(`/api/user/create/` + this.name + `/` + this.pass, {
+
+            })
+                .then(response => { })
+                .catch(e => {
+                    this.errors.push(e)
+                })
 
             this.clearData();
             this.$refs.modal1.hide()
-        }
+        },
+
     }
+
 }
 
 </script>
