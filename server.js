@@ -9,6 +9,8 @@ const router = express.Router();
 const request = require('request');
 // Mongoose
 const mongoose = require('mongoose');
+// Passport 
+const passport = require('passport');
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 
 
@@ -35,6 +37,15 @@ router.get('/', function (req, res) {
   });
 });
 
+app.post('/login',
+passport.authenticate('local'),
+function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.redirect('/users/' + req.user.username);
+});
+
+
 router.get('/user', function (req, res) {
   const User = require('./src/models/user.js');
   let userN = new User({
@@ -50,6 +61,7 @@ router.get('/user', function (req, res) {
     if (err) throw err;
 
     console.log('User saved successfully!');
+  
   });
 
   res.json({
@@ -76,6 +88,7 @@ router.get('/user/create/:name/:password', function (req, res) {
     if (err) throw err;
 
     console.log('User saved successfully!');
+    console.log(userN.getId());
   });
 
   res.json({

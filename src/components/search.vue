@@ -39,9 +39,9 @@ export default {
 
   data: {
     searchValue: 'searchValue',
-    userKey: '468c1cfb7b96f816544e86fa0698b0cd',
-    api1: "http://api.onemusicapi.com/20151208/artist?user_key=468c1cfb7b96f816544e86fa0698b0cd&called=Led%20Zeppelin",
-    api2: "http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=1d9ea39e70e3476140c180593a2ae5bd44b65f12",
+    userKey: '34f0b7dbb9887c1fdb52034d75577e1d07d2073c',
+    api1: "http://api.onemusicapi.com/20151208/artist?user_key=34f0b7dbb9887c1fdb52034d75577e1d07d2073c&called=Led%20Zeppelin",
+    api2: "http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=34f0b7dbb9887c1fdb52034d75577e1d07d2073c",
 
 
   },
@@ -57,7 +57,7 @@ export default {
     handleSearch() {
 
   
-      axios.get("http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=1d9ea39e70e3476140c180593a2ae5bd44b65f12")
+      axios.get("http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=34f0b7dbb9887c1fdb52034d75577e1d07d2073c")
         .then((response) => {
 
           this.resultValue = response.data;
