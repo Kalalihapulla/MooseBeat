@@ -2,16 +2,19 @@
 
 const fs = require('fs');
 const express = require('express');
-const bodyParser = require('body-parser');
-// Create the express app,router and request.
+// Create the express app, router and request.
 const app = express();
 const router = express.Router();
 const request = require('request');
 // Mongoose
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
-mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
+//Routes
+const userRoutes = require('./src/routes/userRoutes');
+const albumRoutes = require('./src/routes/albumRoutes');
 
 
 const { createBundleRenderer } = require('vue-server-renderer');
@@ -24,8 +27,6 @@ const bundleRenderer = createBundleRenderer(
     template: fs.readFileSync('./index.html', 'utf-8')
   }
 );
-
-
 
 //REST API
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -46,147 +47,14 @@ function(req, res) {
 });
 
 
-router.get('/user', function (req, res) {
-  const User = require('./src/models/user.js');
-  let userN = new User({
-    username: 'Forsen',
-    password: 'hunter2',
-    created_at: new Date()
-  });
-  userN.dudify();
-  userN.save(function (err) {
-    /*     userN.resetCount(function(err, nextCount) {
-          
-                 }); */
-    if (err) throw err;
-
-    console.log('User saved successfully!');
-  
-  });
-
-  res.json({
-    message: 'create',
-    geebo: 'lul'
-  });
-});
-
-router.get('/user/create/:name/:password', function (req, res) {
-
-  const User = require('./src/models/user.js');
-  let userN = new User({
-
-    username: req.params.name,
-    password: req.params.password,
-    created_at: new Date()
-  });
-
-
-
-  userN.save(function (err) {
-    /*     userN.resetCount(function(err, nextCount) {
-                   }); */
-    if (err) throw err;
-
-    console.log('User saved successfully!');
-    console.log(userN.getId());
-  });
-
-  res.json({
-    message: 'create',
-    geebo: 'lul'
-  });
-});
-
-router.post('/user/create/', function(req, res){
-  res.setHeader('Content-Type', 'application/json');
-  const User = require('./src/models/user.js');
-  let userN = new User({
-
-    username: req.params.username,
-    password: req.params.password,
-    created_at: new Date()
-  });
-  //mimic a slow network connection
-  setTimeout(function(){
-
-      res.send(JSON.stringify({
-          username: req.body.username || null,
-          password: req.body.password || null
-      }));
-
-  }, 1000)
-
-  //debugging output for the terminal
-  console.log('you posted: First Name: ' + req.body.firstName + ', Last Name: ' + req.body.lastName);
-});
-
-router.get('/user/get/', function (req, res) {
-
-  const User = require('./src/models/user.js');
-  User.find(function (err, users) {
-    if (err) return console.error(err);
-    res.json({ users });
-  });
-});
-
-router.get('/user/get/:_id', function (req, res) {
-  const User = require('./src/models/user.js');
-
-  User.find(function (err, users) {
-    if (err) return console.error(err);
-
-    User.find({ _id: req.params._id }, callback);
-
-  });
-
-
-});
-
-
-
-router.get('/albums/:artist/:title', function (req, res) {
-
-  request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + req.params.title + "&artist=" + req.params.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-
-
-
-      let obj = JSON.parse(body);
-      let firstObj = obj[0];
-      console.log(firstObj.title);
-
-
-      let Album = require('./src/models/album.js');
-      let albumN = new Album({
-        title: firstObj.title,
-        artist: firstObj.artist,
-        genre: firstObj.genre,
-        media: firstObj.media,
-        year: firstObj.year
-      });
-      res.json(JSON.parse(body));
-
-      albumN.save(function (err) {
-        /*     userN.resetCount(function(err, nextCount) {
-              
-                   
-              
-                     }); */
-        if (err) throw err;
-
-        console.log('Album saved successfully!');
-      });
-    }
-  });
-
-
-});
-
 // routes will be prefixed with /static
 app.use(express.static('./src/files'));
 app.use('/static', express.static('./src/files'));
 
+
 // routes will be prefixed with /api
+app.use("/api",userRoutes);
+app.use("/api",albumRoutes);
 app.use('/api', router);
 
 app.use('/dist', express.static('dist'));
