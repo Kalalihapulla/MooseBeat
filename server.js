@@ -9,7 +9,7 @@ const router = express.Router();
 const request = require('request');
 // Mongoose
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
@@ -17,8 +17,12 @@ const passport = require('passport');
 const userRoutes = require('./src/routes/userRoutes');
 const albumRoutes = require('./src/routes/albumRoutes');
 const artistRoutes = require('./src/routes/artistRoutes');
-
-
+//Parser middleware
+const bodyParser = require('body-parser');
+require('body-parser-xml')(bodyParser);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.xml());
 
 const bundleRenderer = createBundleRenderer(
   // Load the SSR bundle with require.
@@ -30,12 +34,22 @@ const bundleRenderer = createBundleRenderer(
 );
 
 //REST API
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 router.get('/', function (req, res) {
   res.json({
     message: 'hooray! welcome to our api!',
     geebo: 'lul'
+  });
+});
+router.get('/test', function (req, res) {
+  
+  request.get({ url: "https://coverartarchive.org/release-group/3d00fb45-f8ab-3436-a8e1-b4bfc4d66913/" }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("albums retrieved");
+      res.sendFile(body);
+
+
+    }
   });
 });
 
@@ -45,6 +59,7 @@ function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
   res.redirect('/users/' + req.user.username);
+  
 });
 
 
