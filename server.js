@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const express = require('express');
+const { createBundleRenderer } = require('vue-server-renderer');
 // Create the express app, router and request.
 const app = express();
 const router = express.Router();
@@ -15,9 +16,9 @@ const passport = require('passport');
 //Routes
 const userRoutes = require('./src/routes/userRoutes');
 const albumRoutes = require('./src/routes/albumRoutes');
+const artistRoutes = require('./src/routes/artistRoutes');
 
 
-const { createBundleRenderer } = require('vue-server-renderer');
 
 const bundleRenderer = createBundleRenderer(
   // Load the SSR bundle with require.
@@ -55,6 +56,7 @@ app.use('/static', express.static('./src/files'));
 // routes will be prefixed with /api
 app.use("/api",userRoutes);
 app.use("/api",albumRoutes);
+app.use("/api",artistRoutes);
 app.use('/api', router);
 
 app.use('/dist', express.static('dist'));
