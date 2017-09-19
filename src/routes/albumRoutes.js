@@ -7,7 +7,7 @@ const request = require('request');
 router.get('/albums', function (req, res) {
 
   request.get({
-    url: "https://musicbrainz.org/ws/2/release-group?artist=65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab&type=album|ep&fmt=json", headers: {
+    url: "https://musicbrainz.org/ws/2/release-group?artist=3f77449d-48e4-4ceb-b869-69af48da877b&type=album|ep&fmt=json", headers: {
       'User-Agent': 'MooseBeat/1.0.0 ( https://moosebeat.herokuapp.com/ )'
     }
   }, function (error, response, body) {
@@ -19,6 +19,22 @@ router.get('/albums', function (req, res) {
 
   });
 });
+router.get('/albums2', function (req, res) {
+  
+    request.get({
+      url: "http://api.musicgraph.com/api/v2/artist/4f9be051-9dea-0f98-3032-b90f88d0c537/albums?api_key=c8303e90962e3a5ebd5a1f260a69b138", 
+    }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+
+  
+      console.log("albums2 retrieved");
+      res.send(JSON.parse(body));
+  
+      }
+  
+    });
+  });
+  
 
 router.get('/albums/:artist/:title', function (req, res) {
 
@@ -55,6 +71,7 @@ router.get('/albums/:artist/:title', function (req, res) {
 
 
 });
+
 
 
 router.get('/albums/cover', function (req, res) {
