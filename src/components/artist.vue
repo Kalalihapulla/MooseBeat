@@ -6,7 +6,9 @@
      <iframe src="https://embed.spotify.com/follow/1/?uri=spotify:artist:3BNDjSD67jJE4fhxX1b2OV&size=detail&theme=light"
       width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
       <iframe src="https://open.spotify.com/embed?uri=spotify:track:0jXK4Xy4LAEKFgRiTr3M7w"
+      
        width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+       <iframe src="https://open.spotify.com/embed/user/chipix95/playlist/3H4699wSANvEbAvSpf8REr" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 
 
   </div>
