@@ -5,6 +5,7 @@ import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 
 //import the vue router
 import VueRouter from 'vue-router'
+
 //tell vue to use the router
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
