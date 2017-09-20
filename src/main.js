@@ -14,12 +14,15 @@ import profile from './components/profile.vue'
 //import the about component
 import search from './components/search.vue'
 //define your routes
+import artist from './components/artist.vue'
 
 const routes = [
   
   { path: '/', component: search },
   
-  { path: '/profile', component: profile }
+  { path: '/profile', component: profile },
+
+  { path: '/artist', component: artist}
 ]
 
 // Create the router instance and pass the `routes` option

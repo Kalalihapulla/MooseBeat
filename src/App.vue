@@ -16,6 +16,9 @@
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="'/profile'">Profile</router-link>
             </li>
+             <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="'/artist'">Artist</router-link>
+            </li>
           
           
           </ul>
