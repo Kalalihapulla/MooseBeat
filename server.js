@@ -9,7 +9,6 @@ const router = express.Router();
 const request = require('request');
 // Mongoose
 const mongoose = require('mongoose');
-
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
@@ -17,6 +16,7 @@ const passport = require('passport');
 const userRoutes = require('./src/routes/userRoutes');
 const albumRoutes = require('./src/routes/albumRoutes');
 const artistRoutes = require('./src/routes/artistRoutes');
+const reviewRoutes = require('./src/routes/reviewRoutes');
 //Parser middleware
 const bodyParser = require('body-parser');
 require('body-parser-xml')(bodyParser);
@@ -72,6 +72,7 @@ app.use('/static', express.static('./src/files'));
 app.use("/api",userRoutes);
 app.use("/api",albumRoutes);
 app.use("/api",artistRoutes);
+app.use("/api",reviewRoutes);
 app.use('/api', router);
 
 app.use('/dist', express.static('dist'));
