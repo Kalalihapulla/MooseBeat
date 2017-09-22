@@ -1,3 +1,4 @@
+const bcrypt   = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const autoIncrement = require('mongoose-auto-increment');
@@ -16,18 +17,23 @@ var userSchema = new Schema({
   _id: Number
 });
 
-userSchema.methods.dudify = function() {
-    // add some stuff to the users name
-    this.name = this.name + '-dude'; 
-  
-    return this.name;
-  };
+
   userSchema.methods.getId = function() {
     // add some stuff to the users name
     
   
     return this._id;
   };
+
+  userSchema.methods.generateHash = function(password) {
+    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+   
+};
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
 
 // we need to create a model using it
 userSchema.plugin(autoIncrement.plugin,'User', {
