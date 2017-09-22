@@ -21,7 +21,7 @@
       <b-col cols="8">
         <ol>
           <li v-for="data in resultValue" v-bind:key="data">
-            <router-link :to="{ name: 'artist', params: { id:  data.id   }}"> {{ data.name }} </router-link>
+            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.id   }}"> {{ data.name }} </router-link>
             
           </li>
         </ol>

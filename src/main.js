@@ -25,7 +25,7 @@ const routes = [
   
   { path: '/profile', component: profile },
 
-  {name: 'artist', path: '/artist/:id', component: artist},
+  {name: 'artist', path: '/artist/:name/:id', component: artist},
 
 ]
 
