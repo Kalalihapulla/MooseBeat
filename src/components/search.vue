@@ -7,67 +7,43 @@
           <H1>Search for an artist</H1>
           <form @submit.stop.prevent="handleSearch">
             <b-form-input type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
-            <p></p>
-            <b-button v-on:click="handleSearch">Search!</b-button>
+            <H2>
+            <router-link :to="{ name: 'artists', params: { id:  searchValue }}"> Search! </router-link>
+            </H2>
           </form>
         </div>
       </b-col>
       <b-col></b-col>
-      
+
     </b-row>
     <p></p>
-    <b-row id="searchResults">
-      <b-col></b-col>
-      <b-col cols="8">
-        <ol>
-          <li v-for="data in resultValue" v-bind:key="data">
-            {{ data.name }}
-          </li>
-        </ol>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
+   
   </b-container>
 </template>
 
 <script>
-import axios from 'axios';
+
 export default {
 
   name: 'search',
 
-
   data: {
     searchValue: 'searchValue',
-    userKey: '34f0b7dbb9887c1fdb52034d75577e1d07d2073c',
-    api1: "http://api.onemusicapi.com/20151208/artist?user_key=34f0b7dbb9887c1fdb52034d75577e1d07d2073c&called=Led%20Zeppelin",
-    api2: "http://api.openaura.com/v1/search/artists?q=" + this.searchValue + "&api_key=34f0b7dbb9887c1fdb52034d75577e1d07d2073c",
-
-
   },
+
+ 
+
 
   data() {
     return {
-      resultValue: '',
+    
+      searchValue: "asdasdasd"
     }
   },
 
   methods: {
 
-    handleSearch() {
-
-  
-      axios.get("/api/artists/" + this.searchValue)
-        .then((response) => {
-
-          this.resultValue = response.data;
-
-        })
-        .catch(function(error) {
-          alert(error);
-        });
-
-    },
+   
 
   }
 
@@ -87,6 +63,5 @@ export default {
 
 #searchResults {
   font-size: 1.5em;
-
 }
 </style>
