@@ -17,6 +17,17 @@
 
     </b-row>
     <p></p>
+     <b-row id="searchResults">
+      <b-col></b-col>
+      <b-col cols="8">
+        <ol>
+          <li v-for="data in resultValue" v-bind:key="data">
+            {{ data.name }}
+          </li>
+        </ol>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
    
   </b-container>
 </template>

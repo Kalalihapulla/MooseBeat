@@ -1,13 +1,12 @@
 <template>
-    <div class="register">
+    <div class="login">
         <div>
 
             <!-- Modal Component -->
-            <b-modal id="regform" ref="regform" title="Submit your account information" @ok="handleOk" @shown="clearData">
-                <form @submit.stop.prevent="handleSubmit">
-                    <b-form-input type="text" value="" placeholder="Enter your name" v-model="username"></b-form-input>
+            <b-modal id="logform" ref="logform" title="Login" @ok="handleOk" @shown="clearData">
+                <form @submit.stop.prevent="handleLogin">
+                    <b-form-input type="text" value="" placeholder="Enter your username" v-model="username"></b-form-input>
                     <b-form-input type="password" placeholder="Enter your password" v-model="password"></b-form-input>
-                    <b-form-input type="password" placeholder="Re-enter your password" v-model="rePass"></b-form-input>
                 </form>
             </b-modal>
         </div>
@@ -17,19 +16,17 @@
 import axios from 'axios';
 export default {
 
-    name: 'register',
+    name: 'login',
 
     data: {
         username: '',
-        password: '',
-        rePass: '',
+        password: ''     
 
     },
     methods: {
         clearData() {
             this.username = '';
-            this.password = '';
-            this.rePass = '';
+            this.password = '';  
 
         },
         handleOk(e) {
@@ -40,27 +37,16 @@ export default {
             else if (!this.password) {
                 alert('Please enter your password');
             }
-            else if (!this.rePass) {
-                alert('Please re enter your password');
-            }
-            else if (this.password != this.rePass) {
-                alert('Your passwords do not match');
-            }
-
-            else if (this.password.length < 5) {
-                alert('Your password must be atleast 5 characters long');
-            }
-
             else {
-                this.handleSubmit()
+                this.handleLogin()
 
             }
         },
-        handleSubmit() {
+        handleLogin() {
 
-            alert(this.username);
+            alert("Boop!");
             axios.get(`/api/user/create/` + this.username + `/` + this.password, {
-
+            
             })
                 .then(response => { })
                 .catch(e => {
