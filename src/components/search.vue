@@ -5,11 +5,9 @@
       <b-col cols="8">
         <div>
           <H1>Search for an artist</H1>
-          <form @submit.stop.prevent="handleSearch">
+          <form @submit.stop.prevent="artistSearch">
             <b-form-input type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
-            <H2>
-            <router-link :to="{ name: 'artists', params: { id:  searchValue }}"> Search! </router-link>
-            </H2>
+            <b-button type="submit" variant="primary">Search!</b-button>
           </form>
         </div>
       </b-col>
@@ -33,13 +31,14 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
 
   name: 'search',
 
   data: {
     searchValue: 'searchValue',
+    resultValue: "",
   },
 
  
@@ -47,17 +46,29 @@ export default {
 
   data() {
     return {
-    
+      resultValue: "",
       searchValue: ""
     }
   },
 
-  methods: {
+ methods: {
 
-   
+  artistSearch() {
+
+   axios.get("/api/artists/" + this.searchValue)
+        .then((response) => {
+
+          this.resultValue = response.data;
+          alert(this.resultValue);
+
+        })
+        .catch(function(error) {
+          alert(error);
+        });
+
 
   }
-
+ }
 }
 
 </script>
