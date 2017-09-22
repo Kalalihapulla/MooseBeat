@@ -29,7 +29,7 @@ router.get('/user/get/:_id', function (req, res) {
 router.get('/user', function (req, res) {
 
   let userN = new User({
-    username: 'Forsen',
+    username: 'Forsen23',
     password: 'hunter2',
     created_at: new Date()
   });

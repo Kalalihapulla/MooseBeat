@@ -10,7 +10,7 @@
        width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
        <iframe src="https://open.spotify.com/embed/user/chipix95/playlist/3H4699wSANvEbAvSpf8REr" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 
-
+  
   </div>
 </template>
 <script>

@@ -7,16 +7,19 @@ const { createBundleRenderer } = require('vue-server-renderer');
 const app = express();
 const router = express.Router();
 const request = require('request');
+const session = require('express-session');
 // Mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 //Routes
 const userRoutes = require('./src/routes/userRoutes');
 const albumRoutes = require('./src/routes/albumRoutes');
 const artistRoutes = require('./src/routes/artistRoutes');
 const reviewRoutes = require('./src/routes/reviewRoutes');
+const passportRoutes = require('./src/routes/passportRoutes');
 //Parser middleware
 const bodyParser = require('body-parser');
 require('body-parser-xml')(bodyParser);
@@ -36,14 +39,11 @@ const bundleRenderer = createBundleRenderer(
 //REST API
 
 
-router.get('/login', function(req, res) {
-  
-          // render the page and pass in any flash data if it exists
-          res.render('login.vue', { message: req.flash('loginMessage') }); 
 
-      });
-
-
+//Passport
+/* app.use(session({ secret: 'owo' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions */
 
 
 // files routes will be prefixed with /static
@@ -51,11 +51,13 @@ app.use(express.static('./src/files'));
 app.use('/static', express.static('./src/files'));
 
 // routes will be prefixed with /api
-app.use("/api",userRoutes);
-app.use("/api",albumRoutes);
-app.use("/api",artistRoutes);
-app.use("/api",reviewRoutes);
-app.use("/log",router);
+app.use("/api", userRoutes);
+app.use("/api", albumRoutes);
+app.use("/api", artistRoutes);
+app.use("/api", reviewRoutes);
+app.use("/log", passportRoutes);
+
+
 
 
 app.use('/dist', express.static('dist'));

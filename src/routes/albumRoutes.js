@@ -34,7 +34,21 @@ router.get('/albums2', function (req, res) {
   
     });
   });
+  router.get('/albums/:artist', function (req, res) {
+    
+      request.get({
+        url: "http://api.musicgraph.com/api/v2/album/search?api_key=121e2a1c43b279d6e8e80c1b3ed2e04d&artist_name=" + req.params.artist, 
+      }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
   
+    
+        console.log("albums retrieved");
+        res.send(body);
+    
+        }
+    
+      });
+    });
 
 router.get('/albums/:artist/:title', function (req, res) {
 
