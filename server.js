@@ -35,45 +35,28 @@ const bundleRenderer = createBundleRenderer(
 
 //REST API
 
-router.get('/', function (req, res) {
-  res.json({
-    message: 'hooray! welcome to our api!',
-    geebo: 'lul'
-  });
-});
-router.get('/test', function (req, res) {
+
+router.get('/login', function(req, res) {
   
-  request.get({ url: "https://coverartarchive.org/release-group/3d00fb45-f8ab-3436-a8e1-b4bfc4d66913/" }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log("albums retrieved");
-      res.sendFile(body);
+          // render the page and pass in any flash data if it exists
+          res.render('login.vue', { message: req.flash('loginMessage') }); 
+
+      });
 
 
-    }
-  });
-});
-
-app.post('/login',
-passport.authenticate('local'),
-function(req, res) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  res.redirect('/users/' + req.user.username);
-  
-});
 
 
-// routes will be prefixed with /static
+// files routes will be prefixed with /static
 app.use(express.static('./src/files'));
 app.use('/static', express.static('./src/files'));
-
 
 // routes will be prefixed with /api
 app.use("/api",userRoutes);
 app.use("/api",albumRoutes);
 app.use("/api",artistRoutes);
 app.use("/api",reviewRoutes);
-app.use('/api', router);
+app.use("/log",router);
+
 
 app.use('/dist', express.static('dist'));
 
