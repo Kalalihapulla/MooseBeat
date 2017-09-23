@@ -4,16 +4,16 @@ const router = express.Router();
 const request = require('request');
 
 
-router.get('/albums', function (req, res) {
+router.get('/albums2/:mbid', function (req, res) {
 
   request.get({
-    url: "https://musicbrainz.org/ws/2/release-group?artist=3f77449d-48e4-4ceb-b869-69af48da877b&type=album|ep&fmt=json", headers: {
+    url: "https://musicbrainz.org/ws/2/release-group?artist="+req.params.mbid+"&type=album|ep&fmt=json", headers: {
       'User-Agent': 'MooseBeat/1.0.0 ( https://moosebeat.herokuapp.com/ )'
     }
   }, function (error, response, body) {
 
     console.log("albums retrieved");
-    res.send(JSON.parse(body));
+    res.send(body);
 
 
 
