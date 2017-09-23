@@ -24,7 +24,12 @@ var userSchema = new Schema({
   
     return this._id;
   };
-
+  userSchema.methods.getusername = function() {
+    // add some stuff to the users name
+    
+  
+    return this.username;
+  };
   userSchema.methods.generateHash = function(password) {
     this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
    
