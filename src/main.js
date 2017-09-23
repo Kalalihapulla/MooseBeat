@@ -17,6 +17,8 @@ import search from './components/search.vue'
 //define your routes
 import artist from './components/artist.vue'
 
+import album from './components/album.vue'
+
 
 
 const routes = [
@@ -26,6 +28,8 @@ const routes = [
   { path: '/profile', component: profile },
 
   {name: 'artist', path: '/artist/:name/:id', component: artist},
+
+  {name: 'album', path: '/album/:title/:id', component: artist},
 
 ]
 
