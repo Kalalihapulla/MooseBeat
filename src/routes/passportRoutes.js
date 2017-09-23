@@ -38,7 +38,11 @@ module.exports = function(app, passport) {
                 user : req.user // get the user out of session and pass to template
             });
         }); */
-    
+        app.post('/login', passport.authenticate('local-login', {
+            successRedirect : '/profile', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+        }));
         // =====================================
         // LOGOUT ==============================
         // =====================================

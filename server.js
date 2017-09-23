@@ -14,6 +14,7 @@ mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+require('./src/config/passport')(passport);
 //Routes
 const userRoutes = require('./src/routes/userRoutes');
 const albumRoutes = require('./src/routes/albumRoutes');
@@ -22,11 +23,9 @@ const reviewRoutes = require('./src/routes/reviewRoutes');
 const passportRoutes = require('./src/routes/passportRoutes');
 //Parser middleware
 const bodyParser = require('body-parser');
-require('body-parser-xml')(bodyParser);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.xml());
-
+app.use(cookieParser()); // read cookies (needed for auth)
 const bundleRenderer = createBundleRenderer(
   // Load the SSR bundle with require.
   require('./dist/vue-ssr-bundle.json'),
@@ -40,11 +39,41 @@ const bundleRenderer = createBundleRenderer(
 
 
 
-//Passport
-/* app.use(session({ secret: 'owo' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions */
 
+
+//Passport
+app.use(session({ secret: 'owo' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions 
+//app.use(cookieParser);
+
+router.post('/login', passport.authenticate('local-login', {
+  
+  successRedirect: '/', // redirect to the secure profile section
+  failureRedirect: '/artist', // redirect back to the signup page if there is an error
+
+}));
+/* router.post('/login',
+passport.authenticate('local-login'),
+function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  res.redirect('/');
+}); */
+// =====================================
+// LOGOUT ==============================
+// =====================================
+router.get('/logout', function (req, res) {
+  console.log(req.user.username + "logout");
+  req.logout();
+  
+  res.redirect('/');
+});
+router.get('/user', function (req, res) {
+  console.log(req.user.username + "logout");
+  
+  res.redirect('/');
+});
 
 // files routes will be prefixed with /static
 app.use(express.static('./src/files'));
@@ -55,8 +84,8 @@ app.use("/api", userRoutes);
 app.use("/api", albumRoutes);
 app.use("/api", artistRoutes);
 app.use("/api", reviewRoutes);
-app.use("/log", passportRoutes);
-
+//app.use("/log", passportRoutes);
+app.use("/", router);
 
 
 

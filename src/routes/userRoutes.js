@@ -91,13 +91,11 @@ router.get('/user/create/:name/:password', function (req, res) {
     if (err) throw err;
 
     console.log('User saved successfully!');
+    console.log(userN.username);
     console.log(userN.validPassword("kana"));
   });
 
-  res.json({
-    message: 'create',
-    geebo: 'lul'
-  });
+  res.redirect('/');
 });
 
 

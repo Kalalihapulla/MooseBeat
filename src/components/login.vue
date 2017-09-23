@@ -9,6 +9,18 @@
                     <b-form-input type="password" placeholder="Enter your password" v-model="password"></b-form-input>
                 </form>
             </b-modal>
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label>username</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
         </div>
     </div>
 </template>
@@ -20,13 +32,13 @@ export default {
 
     data: {
         username: '',
-        password: ''     
+        password: ''
 
     },
     methods: {
         clearData() {
             this.username = '';
-            this.password = '';  
+            this.password = '';
 
         },
         handleOk(e) {
@@ -44,9 +56,11 @@ export default {
         },
         handleLogin() {
 
-            alert("Boop!");
-            axios.get(`/api/user/create/` + this.username + `/` + this.password, {
-            
+
+            axios.post(`/login`, {
+                username: this.username,
+                password: this.password
+
             })
                 .then(response => { })
                 .catch(e => {
