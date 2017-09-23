@@ -1,11 +1,14 @@
 <template>
+<div class="album">
 
     <h1>
         Album page
     </h1>
-</template>
-<script>
 
+</div>
+</template>
+
+<script>
 
 export default {
   name: 'album',

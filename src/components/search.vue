@@ -21,7 +21,7 @@
       <b-col cols="8">
         <ol>
           <li v-for="data in resultValue" v-bind:key="data">
-            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.id   }}"> {{ data.name }} </router-link>
+            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id  }}"> {{ data.name }} </router-link>
             
           </li>
         </ol>
@@ -61,8 +61,6 @@ export default {
         .then((response) => {
 
           this.resultValue = response.data.data;
-          let conna = JSON.stringify(this.resultValue);
-          console.log(conna);
         
 
         })

@@ -19,28 +19,35 @@
           <div class="albums">
             <ul>
 
-              <li v-for="data in resultValue" v-bind:key="data">
+              <li v-for="data in albumResult" v-bind:key="data">
                 <div class="albumTab">
-                  <router-link :to="{ name: 'album', params: { title:  data.na,   id: data.id   }}"> {{ data.title }} </router-link>
+                  <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
+               <!--  fix routing!!! -->
+                  <div class="albumPic">
+                    <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found"/>
+                  </div>
 
                   <ul>
-                    <li> {{ data.release_date }} </li>
+
+                    <li v-if="data.release_date == notFound"> Date: Not found </li>
+                    <li v-else> Date: {{ data.release_date }} </li>
+
                     <li>
-                      <b-dropdown id="" text="Songs {{data.number_of_tracks}} ">
+                      <b-button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+                    </li>
+                    <li>
+                      <b-dropdown id="" text="Songs">
 
                         <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
 
                       </b-dropdown>
                     </li>
                   </ul>
-                  <div class="albumPic">
-                    <img src="http://musicbrainz.org/ws/2/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab?inc=url-rels&fmt=json" alt="http://75orlessrecords.com/wp-content/themes/soundcheck/images/default-artwork.png">
-                  </div>
+
                 </div>
               </li>
             </ul>
-
-            cd526fb3-27a6-465e-810b-ab9653cbe84e
+          </div>
 
         </b-row>
 
@@ -50,33 +57,38 @@
 
     </b-row>
 
-    </div>
+  </div>
 </template>
 <script>
-
+import axios from 'axios';
 
 export default {
   name: 'artist',
   data() {
     return {
-      albumResult: ''
+      albumResult: '',
+      picResult: ''
     }
   },
 
   created: function() {
 
-    axios.get("/api/albums2/" + this.$route.params.id)
+    axios.get("/api/albums/" + this.$route.params.name)
       .then((response) => {
 
-        this.resultValue = response.data.data;
-        let conna = JSON.stringify(this.resultValue);
-        console.log(conna);
-
+        this.albumResult = response.data.data;
 
       })
       .catch(function(error) {
         alert(error);
       });
+  },
+  methods: {
+
+    coverNotFound() {
+
+    document.getElementByClass('albumPicture').src = 'http://sher-jatt.com/mp3/mcov/57366.jpg';
+}
   }
 
 
@@ -105,14 +117,30 @@ a {
 }
 
 .albumTab {
-  border-color: black;
-  border-radius: 1em;
+  border-radius: 4px;
+  border: 3px solid gray;
+  height: 100%;
+  width: 20em;
+  text-align: center;
+  margin-top: 1em;
+  padding: 1em;
 }
 
 .albumPic {
-  border-color: black;
-  border-radius: 1em;
-  height: 3em;
-  width: 3em;
+  border-radius: 4px;
+  border: 5px solid #1d2120;
+  height: 15em;
+  width: 15em;
+  display: block;
+  margin: auto;
+
+  margin: 1em;
+}
+
+.albumPicture {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>
