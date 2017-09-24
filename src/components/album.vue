@@ -1,33 +1,24 @@
 <template>
+<div class="album">
 
-  <div class="profile">
+    <h1>
+        Album page
+    </h1>
 
-    <b-btn v-b-modal="'regform'">Register</b-btn>
-    
-    <p></p>
-     <b-btn v-b-modal="'logform'">Login</b-btn>
-    <login></login>
-    <register></register>
-    <p></p>
-    
-  </div>
+</div>
 </template>
+
 <script>
-import register from './register.vue'
-import login from './login.vue'
 
 export default {
-  name: 'profile',
+  name: 'album',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components: {
-    register,
-    login
-  }
-  
+
+
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
