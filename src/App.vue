@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color:#315ea5">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav id="Nav" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
       <div class="container">
         
@@ -79,7 +79,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+   background: #315ea5;
   margin-top: 60px;
+}
+
+.navbar navbar-expand-lg navbar-light bg-light fixed-top {
+  background: #315ea5 !important;
 }
 </style>

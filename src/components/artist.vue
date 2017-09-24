@@ -16,13 +16,14 @@
         <b-row>
           <p> </p>
 
-          <div class="albums">
+          <div class="albums" style="overflow-y: scroll; height: 60em">
             <ul>
 
               <li v-for="data in albumResult" v-bind:key="data">
                 <div class="albumTab">
                   <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
                <!--  fix routing!!! -->
+               <!--  ADD BACK BUTTON -->
                   <div class="albumPic">
                     <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found"/>
                   </div>
