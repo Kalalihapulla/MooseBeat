@@ -12,6 +12,7 @@ var userSchema = new Schema({
   password: { type: String, required: true },
   admin: Boolean,
   location: String,
+  reviews: [{}],
   created_at: Date,
   updated_at: Date,
   _id: Number

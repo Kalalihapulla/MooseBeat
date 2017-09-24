@@ -37,43 +37,45 @@ const bundleRenderer = createBundleRenderer(
 
 //REST API
 
-
-
-
-
 //Passport
 app.use(session({ secret: 'owo' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions 
-//app.use(cookieParser);
+
 
 router.post('/login', passport.authenticate('local-login', {
-  
+
   successRedirect: '/', // redirect to the secure profile section
   failureRedirect: '/artist', // redirect back to the signup page if there is an error
 
 }));
-/* router.post('/login',
-passport.authenticate('local-login'),
-function(req, res) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  res.redirect('/');
-}); */
-// =====================================
-// LOGOUT ==============================
-// =====================================
 router.get('/logout', function (req, res) {
   console.log(req.user.username + "logout");
+
+ /*  let obj = JSON.parse(req.user);
+  let firstObj = obj[0]; */
+ /*  res.json(req.user.reviews); */
+/*   console.log(firstObj.username); */
+
   req.logout();
-  
-  res.redirect('/');
+
+
 });
-router.get('/user', function (req, res) {
-  console.log(req.user.username + "logout");
-  
-  res.redirect('/');
+router.get('/user', isLoggedIn, function (req, res) {
+
+
+  res.redirect('/profile/' + req.user.username);
 });
+function isLoggedIn(req, res, next) {
+
+  // if user is authenticated in the session, carry on 
+  if (req.isAuthenticated())
+    return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+
 
 // files routes will be prefixed with /static
 app.use(express.static('./src/files'));

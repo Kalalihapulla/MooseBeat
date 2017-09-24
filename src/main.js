@@ -24,6 +24,7 @@ const routes = [
   { path: '/', component: search },
   
   { path: '/profile', component: profile },
+  //{ path: '/profile/:name', component: profile },
 
   {name: 'artist', path: '/artist/:name/:id', component: artist},
 

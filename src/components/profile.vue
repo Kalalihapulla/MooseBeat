@@ -1,4 +1,5 @@
 <template>
+
   <div class="profile">
 
     <b-btn v-b-modal="'regform'">Register</b-btn>

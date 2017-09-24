@@ -80,8 +80,13 @@ router.get('/user/create/:name/:password', function (req, res) {
 
     username: req.params.name,
     password: "",
-    created_at: new Date()
+    created_at: new Date(),
+    reviews: [{}]
   });
+  userN.reviews.push(
+    {id: "7", name: "Douglas Adams", type: "comedy"}
+);
+
   userN.generateHash(req.params.password);
 
 
@@ -92,7 +97,7 @@ router.get('/user/create/:name/:password', function (req, res) {
 
     console.log('User saved successfully!');
     console.log(userN.username);
-    console.log(userN.validPassword("kana"));
+ 
   });
 
   res.redirect('/');
