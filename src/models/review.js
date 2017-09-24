@@ -8,8 +8,8 @@ autoIncrement.initialize(connection);
 var reviewSchema = new Schema({
   
   title: String,
-  user_name:{ type: String, required: true},
-  album_id: String,
+  username:{ type: String, required: true},
+  artist_mbid: String,
   text: String,
   created_at: Date
 });
