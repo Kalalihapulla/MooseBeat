@@ -13,14 +13,13 @@ router.get('/reviews/get', function (req, res) {
 });
 
 router.post('/reviews/create', function (req, res) {
-    let username = req.body.username;
-    console.log(username);
-    let title = req.body.title;
-    let artist_mbid = req.body.artist_mbid;
-    let text = req.body.text;
+    const username = req.body.username;
+    const title = req.body.title;
+    const artist_mbid = req.body.artist_mbid;
+    const text = req.body.text;
 
 
-    let reviewN = new Review({
+    const reviewN = new Review({
         title: title,
         username: username,
         artist_mbid: artist_mbid,
@@ -28,9 +27,10 @@ router.post('/reviews/create', function (req, res) {
         created_at: new Date()
     });
 
-    reviewN.save(function (err) {
+    reviewN.save(err => {
         /*     userN.resetCount(function(err, nextCount) {  
                      }); */
+                    
         if (err) throw err;
 
         console.log('Review saved successfully!');

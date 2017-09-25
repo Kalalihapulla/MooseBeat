@@ -13,7 +13,6 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
 // Passport 
 const passport = require('passport');
-const cookieParser = require('cookie-parser');
 require('./src/config/passport')(passport);
 //Routes
 const userRoutes = require('./src/routes/userRoutes');
@@ -23,9 +22,11 @@ const reviewRoutes = require('./src/routes/reviewRoutes');
 const passportRoutes = require('./src/routes/passportRoutes');
 //Parser middleware
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser()); // read cookies (needed for auth)
+
 const bundleRenderer = createBundleRenderer(
   // Load the SSR bundle with require.
   require('./dist/vue-ssr-bundle.json'),
@@ -36,12 +37,10 @@ const bundleRenderer = createBundleRenderer(
 );
 
 //REST API
-
 //Passport
-app.use(session({ secret: 'owo' })); // session secret
+app.use(session({ secret: 'moosebeatbois' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions 
-
 
 router.post('/login', passport.authenticate('local-login', {
 
@@ -50,15 +49,14 @@ router.post('/login', passport.authenticate('local-login', {
 
 }));
 router.get('/logout', function (req, res) {
-  console.log(req.user.username + "logout");
+  console.log(req.user.username + " logout");
 
  /*  let obj = JSON.parse(req.user);
   let firstObj = obj[0]; */
  /*  res.json(req.user.reviews); */
 /*   console.log(firstObj.username); */
-
-  req.logout();
-
+req.logout();
+res.redirect('/');
 
 });
 router.get('/user', isLoggedIn, function (req, res) {
@@ -66,6 +64,8 @@ router.get('/user', isLoggedIn, function (req, res) {
 
   res.redirect('/profile/' + req.user.username);
 });
+
+
 function isLoggedIn(req, res, next) {
 
   // if user is authenticated in the session, carry on 
@@ -77,7 +77,7 @@ function isLoggedIn(req, res, next) {
 }
 
 
-// files routes will be prefixed with /static
+// files routes will be prefixed with /static and served as static
 app.use(express.static('./src/files'));
 app.use('/static', express.static('./src/files'));
 

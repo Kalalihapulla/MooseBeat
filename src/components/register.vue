@@ -62,7 +62,9 @@ export default {
             axios.get(`/api/user/create/` + this.username + `/` + this.password, {
 
             })
-                .then(response => { })
+                .then(response => {
+                   this.$router.push({ path: '/' });
+                 })
                 .catch(e => {
                     this.errors.push(e)
                 })

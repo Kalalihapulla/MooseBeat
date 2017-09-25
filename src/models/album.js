@@ -5,7 +5,7 @@ const connection = mongoose.createConnection('mongodb://root:root@ds131914.mlab.
 autoIncrement.initialize(connection);
 
 // create a schema  unique: true 
-var albumSchema = new Schema({
+const albumSchema = new Schema({
   
   title: { type: String, required: true},
   artist: String,
@@ -15,13 +15,10 @@ var albumSchema = new Schema({
   created_at: Date
 });
 
-
-// the schema is useless so far
-// we need to create a model using it
 albumSchema.plugin(autoIncrement.plugin,'Album', {
   startAt: 0
 });
-var Album = mongoose.model('Album', albumSchema,'albums');
+const Album = mongoose.model('Album', albumSchema,'albums');
 
 // make this available to our users in our Node applications
 module.exports = Album;

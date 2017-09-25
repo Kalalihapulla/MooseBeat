@@ -5,7 +5,7 @@ const connection = mongoose.createConnection('mongodb://root:root@ds131914.mlab.
 autoIncrement.initialize(connection);
 
 // create a schema  unique: true 
-var reviewSchema = new Schema({
+const  reviewSchema = new Schema({
   
   title: String,
   username:{ type: String, required: true},
@@ -14,13 +14,10 @@ var reviewSchema = new Schema({
   created_at: Date
 });
 
-
-
-
 reviewSchema.plugin(autoIncrement.plugin,'Review', {
   startAt: 0
 });
-var Review = mongoose.model('Review', reviewSchema,'reviews');
+const Review = mongoose.model('Review', reviewSchema,'reviews');
 
 // make this available to our users in our Node applications
 module.exports = Review;

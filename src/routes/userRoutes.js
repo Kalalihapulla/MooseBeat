@@ -75,8 +75,7 @@ router.post('/user/create/', function (req, res) {
 
 router.get('/user/create/:name/:password', function (req, res) {
 
-
-  var userN = new User({
+var userN = new User({
 
     username: req.params.name,
     password: "",
