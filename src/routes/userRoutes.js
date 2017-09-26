@@ -28,7 +28,7 @@ router.get('/user/get/:_id', function (req, res) {
 
 router.get('/user', function (req, res) {
 
-  let userN = new User({
+  const userN = new User({
     username: 'Forsen23',
     password: 'hunter2',
     created_at: new Date()
@@ -53,7 +53,7 @@ router.get('/user', function (req, res) {
 router.post('/user/create/', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
-  let userN = new User({
+  const userN = new User({
 
     username: req.params.username,
     password: req.params.password,

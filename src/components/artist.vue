@@ -60,7 +60,7 @@
           <div class="col-sm-3">
             <div class="rating-block">
               <h4>Average user rating</h4>
-              <h2 class="bold padding-bottom-7">4.3
+              <h2 class="bold padding-bottom-7">{{this.average}}
                 <small>/ 5</small>
               </h2>
               <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
@@ -215,7 +215,8 @@ export default {
     return {
       albumResult: '',
       picResult: '',
-      reviewResult: ''
+      reviewResult: '',
+      average: 0
     }
   },
 
@@ -235,6 +236,18 @@ export default {
       .then((response) => {
 
         this.reviewResult = response.data;
+
+        let total = 0.0;
+        let count = 0.0;
+
+        for (let value of this.reviewResult) {
+
+          total += value.score;
+          count += 1;
+        }
+
+        this.average = Math.round((total / count) * 10) / 10;
+
 
       })
       .catch(function(error) {

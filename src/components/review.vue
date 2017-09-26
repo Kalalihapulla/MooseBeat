@@ -18,7 +18,7 @@ export default {
         handleSubmit() {
 
             
-            axios.get(`/reviews/get/`+ , {
+            axios.get(`/reviews/get/:mbid` + '', {
 
             })
                 .then(response => {
