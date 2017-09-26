@@ -61,8 +61,6 @@ export default {
         .then((response) => {
 
           this.resultValue = response.data.data;
-        
-
         })
         .catch(function(error) {
           alert(error);

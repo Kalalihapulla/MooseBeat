@@ -11,6 +11,7 @@ const  reviewSchema = new Schema({
   username:{ type: String, required: true},
   artist_mbid: String,
   text: String,
+  score: Number,
   created_at: Date
 });
 
