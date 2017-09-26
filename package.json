@@ -11,7 +11,8 @@
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.server.config.js --progress --hide-modules",
     "start": "npm-run-all --parallel watch:server watch:build",
     "watch:build": "webpack --watch",
-    "watch:server": "nodemon server.js --watch \"./dist\""
+    "watch:server": "nodemon server.js --watch \"./dist\"",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.16.2",
