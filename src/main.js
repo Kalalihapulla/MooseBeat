@@ -3,6 +3,7 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 
 
+
 //import the vue router
 import VueRouter from 'vue-router'
 

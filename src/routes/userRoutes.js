@@ -77,11 +77,12 @@ router.get('/user/create/:name/:password', function (req, res) {
     username: req.params.name,
     password: "",
     created_at: new Date(),
-    reviews: [{}]
+    reviews: [{}],
+    albums: [{}]
   });
-  userN.reviews.push(
-    { id: "7", name: "Douglas Adams", type: "comedy" }
-  );
+  /*  userN.reviews.push(
+     { id: "7", name: "Douglas Adams", type: "comedy" }
+   ); */
 
   userN.generateHash(req.params.password);
 
@@ -98,6 +99,34 @@ router.get('/user/create/:name/:password', function (req, res) {
 
   res.redirect('/');
 });
+router.get('/user/albums/add/:artist/:title', function (req, res) {
+  //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
+  User.findOne({ 'username': req.user.username }, function (err, user) {
+    user.albums.push(
+      { artist: req.params.artist, title: req.params.title }
+    );
+    user.save(function (err) {
+
+      if (err) throw err;
+
+      console.log('Album saved to user successfully!');
+    });
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 module.exports = router;

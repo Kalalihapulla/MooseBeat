@@ -12,7 +12,8 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   admin: Boolean,
   location: String,
-  reviews: [{}],
+  reviews: [{}], 
+  albums: [{}],
   created_at: Date,
   updated_at: Date,
   _id: Number
