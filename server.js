@@ -3,7 +3,7 @@
 const fs = require('fs');
 const express = require('express');
 const { createBundleRenderer } = require('vue-server-renderer');
-// Create the express app, router and request.
+// Create the express app, router and request.s
 const app = express();
 const router = express.Router();
 const request = require('request');
