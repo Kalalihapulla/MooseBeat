@@ -7,11 +7,8 @@ const User = require('./../models/user');
 
 router.get('/user/get/', function (req, res) {
 
+  res.send(req.user.username);
 
-  User.find(function (err, users) {
-    if (err) return console.error(err);
-    res.json({ users });
-  });
 });
 
 
@@ -75,7 +72,7 @@ router.post('/user/create/', function (req, res) {
 
 router.get('/user/create/:name/:password', function (req, res) {
 
-var userN = new User({
+  var userN = new User({
 
     username: req.params.name,
     password: "",
@@ -83,8 +80,8 @@ var userN = new User({
     reviews: [{}]
   });
   userN.reviews.push(
-    {id: "7", name: "Douglas Adams", type: "comedy"}
-);
+    { id: "7", name: "Douglas Adams", type: "comedy" }
+  );
 
   userN.generateHash(req.params.password);
 
@@ -96,7 +93,7 @@ var userN = new User({
 
     console.log('User saved successfully!');
     console.log(userN.username);
- 
+
   });
 
   res.redirect('/');
