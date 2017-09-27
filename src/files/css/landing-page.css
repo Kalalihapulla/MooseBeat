@@ -150,3 +150,6 @@ footer {
 p.copyright {
   margin: 15px 0 0;
 }
+#nav {
+  background-color: #315ea5 !important;
+}
