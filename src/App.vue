@@ -5,7 +5,7 @@
 
       <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-      <b-navbar-brand router-link v-bind:to="'/'">MooseBeat</b-navbar-brand>
+      <b-navbar-brand router-link v-bind:to="'/'">MooseBeatw</b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
@@ -23,7 +23,7 @@
           <b-nav-item-dropdown right>
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em>User {{username}}</em>
+              <em>Userw {{username}}</em>
             </template>
             <div v-if="this.username != null">
               <b-dropdown-item router-link v-bind:to="'/profile'">Profile</b-dropdown-item>
@@ -33,38 +33,12 @@
               <b-dropdown-item router-link v-bind:to="'/profile'">Logins</b-dropdown-item>
             </div>
 
-       
           </b-nav-item-dropdown>
         </b-nav>
 
       </b-collapse>
     </b-navbar>
 
-    <!--     <nav id="Nav" class="navbar navbar-expand-lg navbar navbar-inverse bg-primary fixed-top">
-
-                    <div class="container">
-
-                      <div>
-                        <router-link class="navbar-brand" v-bind:to="'/'">MooseBeat</router-link>
-                      </div>
-
-                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-
-                      </button>
-                      <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
-                          <li class="nav-item">
-                            <router-link class="nav-link" v-bind:to="'/profile'">Profile</router-link>
-                          </li>
-                          <li class="nav-item">
-                            <router-link class="nav-link" v-bind:to="'/artist'">Artist</router-link>
-                          </li>
-
-                        </ul>
-                      </div>
-                    </div>
-                  </nav> -->
     <!-- the router outlet, where all matched components would ber viewed -->
 
     <!--  <router-link v-bind:to="'/about'">About</router-link> -->
@@ -122,7 +96,7 @@ export default {
         this.username = response.data;
       })
       .catch(function(error) {
-     
+
       });
   },
 
@@ -141,7 +115,8 @@ export default {
   margin-top: 60px;
 }
 
-.navbar navbar-expand-lg navbar-light bg-light fixed-top {
+
+/* .navbar navbar-expand-lg navbar-light bg-light fixed-top {
   background: #315ea5 !important;
-}
+} */
 </style>
