@@ -7,11 +7,8 @@ const User = require('./../models/user');
 
 router.get('/user/get/', function (req, res) {
 
+  res.send(req.user.username);
 
-  User.find(function (err, users) {
-    if (err) return console.error(err);
-    res.json({ users });
-  });
 });
 
 
@@ -28,7 +25,7 @@ router.get('/user/get/:_id', function (req, res) {
 
 router.get('/user', function (req, res) {
 
-  let userN = new User({
+  const userN = new User({
     username: 'Forsen23',
     password: 'hunter2',
     created_at: new Date()
@@ -53,7 +50,7 @@ router.get('/user', function (req, res) {
 router.post('/user/create/', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
 
-  let userN = new User({
+  const userN = new User({
 
     username: req.params.username,
     password: req.params.password,
@@ -75,13 +72,18 @@ router.post('/user/create/', function (req, res) {
 
 router.get('/user/create/:name/:password', function (req, res) {
 
-
   var userN = new User({
 
     username: req.params.name,
     password: "",
-    created_at: new Date()
+    created_at: new Date(),
+    reviews: [{}],
+    albums: [{}]
   });
+  /*  userN.reviews.push(
+     { id: "7", name: "Douglas Adams", type: "comedy" }
+   ); */
+
   userN.generateHash(req.params.password);
 
 
@@ -92,11 +94,39 @@ router.get('/user/create/:name/:password', function (req, res) {
 
     console.log('User saved successfully!');
     console.log(userN.username);
-    console.log(userN.validPassword("kana"));
+
   });
 
   res.redirect('/');
 });
+router.get('/user/albums/add/:artist/:title', function (req, res) {
+  //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
+  User.findOne({ 'username': req.user.username }, function (err, user) {
+    user.albums.push(
+      { artist: req.params.artist, title: req.params.title }
+    );
+    user.save(function (err) {
+
+      if (err) throw err;
+
+      console.log('Album saved to user successfully!');
+    });
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 module.exports = router;
