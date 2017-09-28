@@ -13,9 +13,9 @@ router.get('/reviews/get', function (req, res) {
 });
 
 router.post('/reviews/create', function (req, res) {
-    const username = req.body.username;
+    const username = req.user.username;
     const title = req.body.title;
-    const artist_mbid = req.body.artist_mbid;
+    const artist_mbid = req.body.artistId;
     const text = req.body.text;
     const score = req.body.score;
 
