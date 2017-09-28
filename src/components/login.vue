@@ -1,22 +1,14 @@
 <template>
     <div class="login">
-        <div>
-
-            <!-- Modal Component -->
-            <b-modal id="logform" ref="logform" title="Login" @ok="handleOk" @shown="clearData">
-                <form @submit.stop.prevent="handleLogin">
-                    <b-form-input type="text" value="" placeholder="Enter your username" v-model="username"></b-form-input>
-                    <b-form-input type="password" placeholder="Enter your password" v-model="password"></b-form-input>
-                </form>
-            </b-modal>
+        <div class ="center_div">
             <form action="/login" method="post">
                 <div class="form-group">
-                    <label>username</label>
-                    <input type="text" class="form-control" name="username">
+                    <label for="user"><b>Username</b></label>
+                    <input id ="user" type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group">
-                    <label>password</label>
-                    <input type="password" class="form-control" name="password">
+                    <label for="password"><b>Password</b></label>
+                    <input id="password"type="password" class="form-control" name="password">
                 </div>
 
                 <button type="submit" class="btn btn-warning btn-lg">Login</button>
@@ -78,5 +70,8 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.center_div{
+    margin: 0 auto;
+    width:40% /* value of your choice which suits your alignment */
+}
 </style>
