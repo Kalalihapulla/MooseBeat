@@ -14,17 +14,21 @@
 
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+
           <ul class="navbar-nav ml-auto">
-            <div v-if="this.username != null">
-              <li class="nav-item">
-                <router-link class="nav-link" v-bind:to="'/profile'">Login</router-link>
-              </li>
-            </div>
-            <div v-else>
-              <li class="nav-item">
-                <router-link class="nav-link" v-bind:to="'/profile'">Profile {{username}}</router-link>
-              </li>
-            </div>
+
+            <li class="nav-item" v-if="this.username != null">
+              <router-link class="nav-link" v-bind:to="'/profile'">Profile {{username}}</router-link>
+            </li>
+            <li class="nav-item" v-if="this.username != null">
+
+              <a class="nav-link" href="/logout">Logout</a>
+
+            </li>
+
+            <li class="nav-item" v-else>
+              <router-link class="nav-link" v-bind:to="'/profile'">Login</router-link>
+            </li>
 
           </ul>
         </div>
