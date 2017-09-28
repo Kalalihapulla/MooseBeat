@@ -1,46 +1,9 @@
 <template>
   <div id="app">
 
-    <b-navbar class="navbar fixed-top" toggleable="md" type="dark" variant="info">
 
-      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-      <b-navbar-brand router-link v-bind:to="'/'">MooseBeat</b-navbar-brand>
-
-      <b-collapse is-nav id="nav_collapse">
-
-        <!-- Right aligned nav items -->
-        <b-nav is-nav-bar class="ml-auto">
-          <b-nav is-nav-bar>
-            <b-nav-item router-link v-bind:to="'/artist'">Artist</b-nav-item>
-            <b-nav-item router-link v-bind:to="'/profile'">Profile</b-nav-item>
-          </b-nav>
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search" />
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form>
-
-          <b-nav-item-dropdown right>
-            <!-- Using button-content slot -->
-            <template slot="button-content">
-              <em>Userw {{username}}</em>
-            </template>
-            <div v-if="this.username != null">
-              <b-dropdown-item router-link v-bind:to="'/profile'">Profile</b-dropdown-item>
-              <b-dropdown-item a href="/logout">Logout</b-dropdown-item>
-            </div>
-            <div v-else>
-              <b-dropdown-item router-link v-bind:to="'/profile'">Login</b-dropdown-item>
-            </div>
-
-       
-          </b-nav-item-dropdown>
-        </b-nav>
-
-      </b-collapse>
-    </b-navbar>
-
-    <!--     <nav id="Nav" class="navbar navbar-expand-lg navbar navbar-inverse bg-primary fixed-top">
+        <nav id="Nav" class="navbar navbar-expand-lg navbar navbar-inverse bg-primary fixed-top">
 
                     <div class="container">
 
@@ -64,7 +27,7 @@
                         </ul>
                       </div>
                     </div>
-                  </nav> -->
+                  </nav>
     <!-- the router outlet, where all matched components would ber viewed -->
 
     <!--  <router-link v-bind:to="'/about'">About</router-link> -->
