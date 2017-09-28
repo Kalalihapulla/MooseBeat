@@ -4,7 +4,7 @@
       <b-col cols="1"></b-col>
 
       <b-col cols="3">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Write a review</button>
+        <button type="button" v-if="this.username != null" class="btn btn-info" data-toggle="collapse" data-target="#demo">Write a review</button>
         <br>
         <div id="demo" class="collapse">
           <form action="/api/reviews/create" method="post">
@@ -246,10 +246,19 @@ export default {
       reviewResult: '',
       average: 0,
       id: this.$route.params.id,
+      username: null,
     }
   },
 
   created: function() {
+
+    axios.get("/api/user/get/")
+      .then((response) => {
+        this.username = response.data;
+      })
+      .catch(function(error) {
+
+      });
 
     axios.get("/api/albums/" + this.$route.params.name)
       .then((response) => {
