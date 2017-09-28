@@ -18,7 +18,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item" v-if="this.username != null">
-              <router-link class="nav-link" v-bind:to="'/profile'">Profile {{username}}</router-link>
+              <router-link class="nav-link" v-bind:to="'/profile/'+ username">Profile {{username}}</router-link>
             </li>
             <li class="nav-item" v-if="this.username != null">
 

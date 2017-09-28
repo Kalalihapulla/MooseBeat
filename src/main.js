@@ -3,6 +3,7 @@ import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 
 
+
 //import the vue router
 import VueRouter from 'vue-router'
 
@@ -27,9 +28,11 @@ const routes = [
   
   { path: '/profile', component: profile },
 
+  { name: 'profile', path: '/profile/:name', component: profile },
+
   {name: 'artist', path: '/artist/:name/:id', component: artist},
 
-  {name: 'album', path: '/album/:title/:id', component: artist},
+  {name: 'album', path: '/album/:title/:id', component: album},
 
 ]
 
