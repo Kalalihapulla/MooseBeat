@@ -23,7 +23,7 @@
           <b-nav-item-dropdown right>
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em>User {{username}}</em>
+              <em>Userw {{username}}</em>
             </template>
             <div v-if="this.username != null">
               <b-dropdown-item router-link v-bind:to="'/profile'">Profile</b-dropdown-item>
