@@ -30,7 +30,7 @@
               <b-dropdown-item a href="/logout">Logout</b-dropdown-item>
             </div>
             <div v-else>
-              <b-dropdown-item router-link v-bind:to="'/profile'">Login</b-dropdown-item>
+              <b-dropdown-item router-link v-bind:to="'/profile'">Logins</b-dropdown-item>
             </div>
 
        
