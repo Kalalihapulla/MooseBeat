@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item" v-if="this.username != null">
 
-              <a class="nav-link" href="/logout">Logout</a>
+              <a class="nav-link" href="/logout">Logout!</a>
 
             </li>
 
