@@ -31,6 +31,13 @@
 
     <div class="artistContent">
 
+    <div id="artistDesc">
+
+      <H1>This band is a band</H1>
+
+    </div>
+
+      <div id="albumList">
       <ul>
 
         <li v-for="data in albumResult" v-bind:key="data">
@@ -45,7 +52,7 @@
 
             <ul>
 
-              <li v-if="data.release_date == notFound"> Date: Not found </li>
+              <li v-if="data.release_date == undefined"> Date: Not found </li>
               <li v-else> Date: {{ data.release_date }} </li>
 
               <li>
@@ -63,8 +70,63 @@
           </div>
         </li>
       </ul>
+      </div>
 
-    </div>
+  <div id="artistReviews">
+    <div id="review">
+     <ul>
+          <li v-for="data in reviewResult" v-bind:key="data">
+            <div class="row">
+              <div class="col-sm-7">
+                <hr/>
+                <div class="review-block">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <img src="/static/img/forsene.jpg" class="img-rounded">
+                      <div class="review-block-name">
+                        <router-link :to="{ name: 'profile', params: {name:  data.username}}"> {{data.username}} </router-link>
+                      </div>
+                      <div class="review-block-date">{{data.created_at}}</div>
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="review-block-rate">
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                      <div class="review-block-title">{{data.title}}</div>
+                      <div class="review-block-description">{{data.text}}</div>
+                    </div>
+                  </div>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        </div>
+  </div>
+
+  <div id="artistRecommendations">
+
+  </div>
+
+  </div>
+
+
+
   </div>
   </div>
 </template>
