@@ -5,22 +5,20 @@ const connection = mongoose.createConnection('mongodb://root:root@ds131914.mlab.
 autoIncrement.initialize(connection);
 
 // create a schema  unique: true 
-var reviewSchema = new Schema({
+const  reviewSchema = new Schema({
   
   title: String,
-  user_name:{ type: String, required: true},
-  album_id: String,
+  username:{ type: String, required: true},
+  artist_mbid: String,
   text: String,
+  score: Number,
   created_at: Date
 });
-
-
-
 
 reviewSchema.plugin(autoIncrement.plugin,'Review', {
   startAt: 0
 });
-var Review = mongoose.model('Review', reviewSchema,'reviews');
+const Review = mongoose.model('Review', reviewSchema,'reviews');
 
 // make this available to our users in our Node applications
 module.exports = Review;
