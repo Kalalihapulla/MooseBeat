@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="'/profile'">Profile {{username}}</router-link>
+              <router-link class="nav-link" v-bind:to="'/profile'">Profile</router-link>
             </li>
              <li class="nav-item">
               <router-link class="nav-link" v-bind:to="'/artist'">Artist</router-link>
