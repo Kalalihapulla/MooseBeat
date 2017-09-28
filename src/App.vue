@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="'/profile'">Profile</router-link>
+              <router-link class="nav-link" v-bind:to="'/profile'">Profile {{username}}</router-link>
             </li>
              <li class="nav-item">
               <router-link class="nav-link" v-bind:to="'/artist'">Artist</router-link>
@@ -61,12 +61,30 @@
 
 <script>
 import register from './components/register.vue'
-
+import axios from 'axios';
 export default {
   name: 'app',
   components: {
     register
-  }
+  },
+  data() {
+    return {
+      username: null,
+
+
+
+    }
+  },
+  created: function() {
+
+    axios.get("/api/user/get/")
+      .then((response) => {
+        this.username = response.data;
+      })
+      .catch(function(error) {
+     
+      });
+  },
 
 }
 
