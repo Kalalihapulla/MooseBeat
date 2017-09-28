@@ -1,11 +1,98 @@
 <template>
-<div class="album">
+  <div class="album">
 
-    <h1>
-        Album page
-    </h1>
+    <div class="menu">
+      <h1>Scrolling</h1>
+    </div>
 
-</div>
+    <div class="content">
+      <b-row>
+   
+          <b-col cols="4">
+
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+            <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+            <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+           <h1>LULULULLULULUL</h1>
+
+
+          </b-col>
+
+          <b-col cols="8">
+
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+                  <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+            <h3>ASDASDASDASDASD</h3>
+
+          </b-col>
+      </b-row>
+
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -40,5 +127,20 @@ li {
 
 a {
   color: #42b983;
+}
+
+
+
+/* Main site body */
+
+.menu {
+  width: 30%;
+  float: left;
+  position: fixed;
+}
+
+.content {
+  width: 70%;
+  float: right;
 }
 </style>

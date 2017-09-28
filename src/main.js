@@ -10,6 +10,7 @@ import VueRouter from 'vue-router'
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
+
 //import the hello component
 import profile from './components/profile.vue'
 //import the about component
@@ -22,16 +23,16 @@ import album from './components/album.vue'
 
 
 const routes = [
-  
+
   { path: '/', component: search },
-  
+
   { path: '/profile', component: profile },
 
   { name: 'profile', path: '/profile/:name', component: profile },
 
-  {name: 'artist', path: '/artist/:name/:id', component: artist},
+  { name: 'artist', path: '/artist/:name/:id', component: artist },
 
-  {name: 'album', path: '/album/:title/:id', component: album},
+  { name: 'album', path: '/album/:title/:id', component: album },
 
 ]
 
