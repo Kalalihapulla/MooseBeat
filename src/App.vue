@@ -42,32 +42,11 @@
 
     <!--  <router-link v-bind:to="'/about'">About</router-link> -->
 
-    <div>
+    <div id="render">
       <router-view></router-view>
     </div>
 
-    <footer>
-      <div class="container">
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Home</a>
-          </li>
-          <li class="footer-menu-divider list-inline-item">&sdot;</li>
-          <li class="list-inline-item">
-            <a href="#about">About</a>
-          </li>
-          <li class="footer-menu-divider list-inline-item">&sdot;</li>
-          <li class="list-inline-item">
-            <a href="#services">Services</a>
-          </li>
-          <li class="footer-menu-divider list-inline-item">&sdot;</li>
-          <li class="list-inline-item">
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-        <p class="copyright text-muted small">Copyright &copy; Dead Moose Meat 2017. All Rights Reserved</p>
-      </div>
-    </footer>
+   
   </div>
 </template>
 
@@ -234,6 +213,10 @@ body, h1, h2, h3, h4, h5, h6 {
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
   color: #a7dff4;
   background-color: #0091c5;
+}
+
+#render {
+  background: blue;
 }
 
 /* .owo {

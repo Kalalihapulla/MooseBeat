@@ -1,5 +1,5 @@
 <template>
-<div class="album">
+<div class="reviews">
 
 </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'album',
+  name: 'reviews',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'

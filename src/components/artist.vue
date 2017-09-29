@@ -1,135 +1,165 @@
 <template>
   <div class="artist">
 
-      <div class="artistBody">
-    <div class="artistInfo">
-      <div id="artistTitle">
-        <h1>{{$route.params.name}}</h1>
+    <div class="artistBody">
+      <div class="artistInfo">
+        <div id="artistTitle">
+          <h1>{{$route.params.name}}</h1>
+        </div>
+        <div id="artistDetails">
+
+          <ul>
+            <li> Year formed: </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <p>More stuff...</p>
+          </ul>
+
+        </div>
+
+        <div id="spotifyPlayer">
+          <p>
+            Spotify Here
+          </p>
+
+        </div>
+
       </div>
-      <div id="artistDetails">
 
-        <ul>
-          <li> Year formed: </li>
-          <li> .... </li>
-          <li> .... </li>
-          <li> .... </li>
-          <li> .... </li>
-          <li> .... </li>
-          <li> .... </li>
-          <p>More stuff...</p>
-        </ul>
+      <div class="artistContent">
 
-      </div>
+        <div id="artistDesc">
 
-      <div id="spotifyPlayer">
-        <p>
-          Spotify Here
-        </p>
+          <H1>This band is a band</H1>
 
-      </div>
+        </div>
 
-    </div>
+        <div id="albumList">
+          <ul>
 
-    <div class="artistContent">
+            <li v-for="data in albumResult" v-bind:key="data">
+              <div class="albumTab">
+                <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
+                <!--  fix routing!!! -->
 
-    <div id="artistDesc">
+                <!--  ADD BACK BUTTON -->
+                <div class="albumPic">
+                  <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found" />
+                </div>
 
-      <H1>This band is a band</H1>
+                <ul>
 
-    </div>
+                  <li v-if="data.release_date == undefined"> Date: Not found </li>
+                  <li v-else> Date: {{ data.release_date }} </li>
 
-      <div id="albumList">
-      <ul>
+                  <li>
+                    <b-button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+                  </li>
+                  <li>
+                    <b-dropdown id="" text="Songs">
 
-        <li v-for="data in albumResult" v-bind:key="data">
-          <div class="albumTab">
-            <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
-            <!--  fix routing!!! -->
+                      <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
 
-            <!--  ADD BACK BUTTON -->
-            <div class="albumPic">
-              <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found" />
+                    </b-dropdown>
+                  </li>
+                </ul>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div id="artistReviews">
+
+          <div id="addReview">
+
+            <button id="reviewButton" type="button" v-if="this.username != null" class="btn btn-info" data-toggle="collapse" data-target="#newReview">Write a review</button>
+            <br>
+            <div id="newReview" class="collapse">
+              <form action="/api/reviews/create" method="post">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <textarea name="title" class="form-control" id="title" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="score">Score</label>
+                  <select class="form-control" name="score" id="score">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="text">Review</label>
+                  <textarea class="form-control" name="text" id="text" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="hidden" name="artistId" readonly class="form-control-plaintext" id="artistId" v-bind:value="this.id">
+                </div>
+                <button type="submit" class="btn btn-warning btn-lg">Save</button>
+              </form>
             </div>
-
-            <ul>
-
-              <li v-if="data.release_date == undefined"> Date: Not found </li>
-              <li v-else> Date: {{ data.release_date }} </li>
-
-              <li>
-                <b-button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
-              </li>
-              <li>
-                <b-dropdown id="" text="Songs">
-
-                  <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
-
-                </b-dropdown>
-              </li>
-            </ul>
-
           </div>
-        </li>
-      </ul>
-      </div>
 
-  <div id="artistReviews">
-    <div id="review">
-     <ul>
-          <li v-for="data in reviewResult" v-bind:key="data">
-            <div class="row">
-              <div class="col-sm-7">
-                <hr/>
-                <div class="review-block">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <img src="/static/img/forsene.jpg" class="img-rounded">
-                      <div class="review-block-name">
-                        <router-link :to="{ name: 'profile', params: {name:  data.username}}"> {{data.username}} </router-link>
+          <div id="review">
+            <ul>
+              <li v-for="data in reviewResult" v-bind:key="data">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <hr/>
+                    <div class="review-block">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <img src="/static/img/forsene.jpg" class="img-rounded">
+                          <div class="review-block-name">
+                            <router-link :to="{ name: 'profile', params: {name:  data.username}}"> {{data.username}} </router-link>
+                          </div>
+                          <div class="review-block-date">{{data.created_at}}</div>
+                        </div>
+                        <div class="col-sm-9">
+                          <div class="review-block-rate">
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                            </button>
+                          </div>
+                          <div class="review-block-title">{{data.title}}</div>
+                          <div class="review-block-description">{{data.text}}</div>
+                        </div>
                       </div>
-                      <div class="review-block-date">{{data.created_at}}</div>
-                    </div>
-                    <div class="col-sm-9">
-                      <div class="review-block-rate">
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                      </div>
-                      <div class="review-block-title">{{data.title}}</div>
-                      <div class="review-block-description">{{data.text}}</div>
+                      <hr/>
                     </div>
                   </div>
-                  <hr/>
                 </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-  </div>
 
-  <div id="artistRecommendations">
+        <div id="artistRecommendations">
 
-  </div>
+        </div>
 
-  </div>
+      </div>
 
-
-
-  </div>
- 
+    </div>
 
   </div>
 </template>
@@ -232,6 +262,7 @@ a {
   text-align: center;
   margin-top: 1em;
   padding: 1em;
+  background: white;
 }
 
 .albumPic {
@@ -302,5 +333,51 @@ a {
 
 .review-block-description {
   font-size: 13px;
+}
+
+.artistInfo {
+  margin: 1% 3% 3% 3%;
+  width: 29%;
+  height: 85%;
+  float: left;
+  position: fixed;
+  background: whitesmoke;
+  border-radius: 1em;
+}
+
+.artistContent {
+  width: 62%;
+  margin: 1% 3% 3% 0%;
+  float: right;
+  background: whitesmoke;
+  border-radius: 1em;
+  padding-top: 1%;
+}
+
+#spotifyPlayer {
+  width: 80%;
+  height: 50%;
+}
+
+#artistDetails {
+  height: 50%;
+  width: 80%;
+}
+
+.artistBody {
+  background: #42a1f4 !important;
+}
+
+#reviewButton {
+  width: 90%;
+  margin-top: 2em;
+}
+
+#newReview {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 </style>
