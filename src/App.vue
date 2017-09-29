@@ -6,7 +6,10 @@
       <div class="container">
 
         <div>
-          <router-link class="navbar-brand" v-bind:to="'/'">MooseBeat</router-link>
+          <router-link class="navbar-brand" v-bind:to="'/'">
+            <img src="/static/img/moose.png" width="30" height="30" class="d-inline-block align-top" alt=""> MooseBeat
+          </router-link>
+
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,6 +112,4 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
-
-
 </style>
