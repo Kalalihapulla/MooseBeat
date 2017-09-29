@@ -56,6 +56,9 @@ export default {
 
             }
         },
+        hideModal() {
+            this.$refs.regform.hide();
+        },
         handleSubmit() {
 
 
@@ -63,11 +66,10 @@ export default {
             })
                 .then(response => {
                     alert(response.data);
-                    this.clearData();
-                    this.$refs.modal1.hide()
+                    hideModal();
                 })
                 .catch(e => {
-                   
+
                     this.errors.push(e)
                 })
 

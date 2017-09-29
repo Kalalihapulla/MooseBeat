@@ -122,12 +122,12 @@ router.get('/user/albums/add/:artist/:title', function (req, res) {
 });
 router.get('/user/albums/get/:username', function (req, res) {
   //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
-
+  var jsonArtist = [];
   User.findOne({ 'username': req.params.username }, function (err, user) {
 
 
     let result = user.albums;
-    var jsonArtist = [{}];
+
 
 
 
@@ -137,9 +137,11 @@ router.get('/user/albums/get/:username', function (req, res) {
         request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + value.title + "&artist=" + value.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
           if (!error && response.statusCode == 200) {
 
-            jsonArtist.push(JSON.stringify(body));
-
+            let obj = JSON.parse(body);
+            let firstObj = obj[0];
+            jsonArtist.push(firstObj);
           }
+
         });
 
       }
