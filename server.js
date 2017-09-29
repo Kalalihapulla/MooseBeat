@@ -20,6 +20,7 @@ const albumRoutes = require('./src/routes/albumRoutes');
 const artistRoutes = require('./src/routes/artistRoutes');
 const reviewRoutes = require('./src/routes/reviewRoutes');
 const passportRoutes = require('./src/routes/passportRoutes');
+const spotifyRoutes = require('./src/routes/spotifyRoutes');
 //Parser middleware
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -86,6 +87,7 @@ app.use("/api", userRoutes);
 app.use("/api", albumRoutes);
 app.use("/api", artistRoutes);
 app.use("/api", reviewRoutes);
+app.use("/api", spotifyRoutes);
 //app.use("/log", passportRoutes);
 app.use("/", router);
 
