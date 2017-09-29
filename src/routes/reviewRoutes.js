@@ -4,10 +4,11 @@ const request = require('request');
 const Review = require('./../models/review');
 
 
-router.get('/reviews/get/:username', function (req, res) {
+router.get('/reviews/get', function (req, res) {
 
-    Review.find({ username: req.params.username }, function (err, result) {
-        res.send(result);
+    Review.find(function (err, reviews) {
+        if (err) return console.error(err);
+        res.json({ reviews });
     });
 });
 
@@ -37,33 +38,37 @@ router.post('/reviews/create', function (req, res) {
         console.log('Review saved successfully!');
     });
 
-
+    res.send("Review created");
 });
 router.get('/reviews/get/:mbid', function (req, res) {
 
     Review.find({ artist_mbid: req.params.mbid }, function (err, result) {
         console.log("Reviews retrieved");
 
-        /*   let total = 0.0;
-          let count = 0.0;
-  
-          for (let value of result) {
-  
-              total += value.score;
-              count += 1;
-          }
-  
-   */
-        /*   result.push(
-  
-              { average: Math.round((total / count) * 10) / 10 }
-          ); */
+      /*   let total = 0.0;
+        let count = 0.0;
+        for (let value of result) {
+            total += value.score;
+            count += 1;
+        }
+ */
+      /*   result.push(
+            { average: Math.round((total / count) * 10) / 10 }
+        ); */
 
         res.send(result);
 
 
 
     });
+
+    router.get('/reviews/get/user/:username', function (req, res) {
+        
+            Review.find({ username: req.params.username }, function (err, result) {
+                res.send(result);
+            });
+        });
+        
 
 });
 

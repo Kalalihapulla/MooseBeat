@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQCYxWC7zg3pRY04ARB10T26S-byxXHekxksXN6ZUB5T3HU-epTl0ySNfzxsBnE1LfSmLl0JpaTMWiFCGAkQHIDrtHq9__sTVbOaA7-wsu3nwmVWZszPHwDSSRbWOprwnmTgTPOZK-1T';
+const token = 'BQD_wc2mwRPhaC0fUCP5ESLD7qBcqQVS8Yga5wZPQMBd17BU-Nyl4gCOgU74cLYBFYlVJIZbwODM65abdBFCHbMh8jiF4ijTUtlElR1JCMHbfXTXH-8M1fkTt5G5jxQl1_3za3kXMRs-';
 
 router.get('/spotify/get/toptracks/:artistId', function (req, res) {
 
