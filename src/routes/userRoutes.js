@@ -140,6 +140,7 @@ router.get('/user/albums/get/:username', function (req, res) {
             let obj = JSON.parse(body);
             let firstObj = obj[0];
             jsonArtist.push(firstObj);
+            res.send(jsonArtist);
           }
 
         });
@@ -148,7 +149,7 @@ router.get('/user/albums/get/:username', function (req, res) {
 
     }
 
-    res.send(jsonArtist);
+ 
 
   });
 
