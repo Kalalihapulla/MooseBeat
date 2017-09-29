@@ -1,5 +1,134 @@
 <template>
   <div class="artist">
+
+      <div class="artistBody">
+    <div class="artistInfo">
+      <div id="artistTitle">
+        <h1>{{$route.params.name}}</h1>
+      </div>
+      <div id="artistDetails">
+
+        <ul>
+          <li> Year formed: </li>
+          <li> .... </li>
+          <li> .... </li>
+          <li> .... </li>
+          <li> .... </li>
+          <li> .... </li>
+          <li> .... </li>
+          <p>More stuff...</p>
+        </ul>
+
+      </div>
+
+      <div id="spotifyPlayer">
+        <p>
+          Spotify Here
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="artistContent">
+
+    <div id="artistDesc">
+
+      <H1>This band is a band</H1>
+
+    </div>
+
+      <div id="albumList">
+      <ul>
+
+        <li v-for="data in albumResult" v-bind:key="data">
+          <div class="albumTab">
+            <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
+            <!--  fix routing!!! -->
+
+            <!--  ADD BACK BUTTON -->
+            <div class="albumPic">
+              <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found" />
+            </div>
+
+            <ul>
+
+              <li v-if="data.release_date == undefined"> Date: Not found </li>
+              <li v-else> Date: {{ data.release_date }} </li>
+
+              <li>
+                <b-button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+              </li>
+              <li>
+                <b-dropdown id="" text="Songs">
+
+                  <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
+
+                </b-dropdown>
+              </li>
+            </ul>
+
+          </div>
+        </li>
+      </ul>
+      </div>
+
+  <div id="artistReviews">
+    <div id="review">
+     <ul>
+          <li v-for="data in reviewResult" v-bind:key="data">
+            <div class="row">
+              <div class="col-sm-7">
+                <hr/>
+                <div class="review-block">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <img src="/static/img/forsene.jpg" class="img-rounded">
+                      <div class="review-block-name">
+                        <router-link :to="{ name: 'profile', params: {name:  data.username}}"> {{data.username}} </router-link>
+                      </div>
+                      <div class="review-block-date">{{data.created_at}}</div>
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="review-block-rate">
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                      <div class="review-block-title">{{data.title}}</div>
+                      <div class="review-block-description">{{data.text}}</div>
+                    </div>
+                  </div>
+                  <hr/>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        </div>
+  </div>
+
+  <div id="artistRecommendations">
+
+  </div>
+
+  </div>
+
+
+
+  </div>
  
 
   </div>
