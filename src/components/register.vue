@@ -58,17 +58,20 @@ export default {
         },
         handleSubmit() {
 
-            alert(this.username);
-            axios.get(`/api/user/create/` + this.username + `/` + this.password, {
 
+            axios.get(`/api/user/create/` + this.username + `/` + this.password, {
             })
-                .then(response => { })
+                .then(response => {
+                    alert(response.data);
+                    this.clearData();
+                    this.$refs.modal1.hide()
+                })
                 .catch(e => {
+                   
                     this.errors.push(e)
                 })
 
-            this.clearData();
-            this.$refs.modal1.hide()
+
         },
 
     }

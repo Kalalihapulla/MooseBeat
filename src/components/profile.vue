@@ -1,13 +1,13 @@
 <template>
   <div class="profile">
-
-    <b-btn v-b-modal="'regform'">Register</b-btn>
-    <register></register>
+    <br>
     <p></p>
-     <b-btn v-b-modal="'logform'">Login</b-btn>
     <login></login>
+     <br>
+    <b-btn v-b-modal="'regform'">Register</b-btn>
+     <register></register>
     <p></p>
-    
+
   </div>
 </template>
 <script>
@@ -25,7 +25,7 @@ export default {
     register,
     login
   }
-  
+
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

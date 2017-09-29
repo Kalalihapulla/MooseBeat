@@ -87,19 +87,22 @@ router.get('/user/create/:name/:password', function (req, res) {
 
   userN.generateHash(req.params.password);
 
-
   userN.save(function (err) {
     /*     userN.resetCount(function(err, nextCount) {
                    }); */
-    if (err) throw err;
+    if (err) {
+      console.log("Failed");
+      res.send("User already exists!");
 
-    console.log('User saved successfully!');
-    console.log(userN.username);
-
+    }
+    else {
+      console.log('User saved successfully!');
+      console.log(userN.username);
+      res.send("User created!");
+    }
   });
-
-  res.redirect('/');
 });
+
 router.get('/user/albums/add/:artist/:title', function (req, res) {
   //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
@@ -133,9 +136,9 @@ router.get('/user/albums/get/:username', function (req, res) {
 
         request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + value.title + "&artist=" + value.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
           if (!error && response.statusCode == 200) {
-           
-            jsonArtist.push(JSON.stringify( body) );
-           
+
+            jsonArtist.push(JSON.stringify(body));
+
           }
         });
 

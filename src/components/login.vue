@@ -3,11 +3,11 @@
         <div class ="center_div">
             <form action="/login" method="post">
                 <div class="form-group">
-                    <label for="user"><b>Username</b></label>
+                    <label for="user">Username</label>
                     <input id ="user" type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group">
-                    <label for="password"><b>Password</b></label>
+                    <label for="password">Password</label>
                     <input id="password"type="password" class="form-control" name="password">
                 </div>
 
@@ -72,6 +72,6 @@ export default {
 <style scoped>
 .center_div{
     margin: 0 auto;
-    width:40% /* value of your choice which suits your alignment */
+    width:30% /* value of your choice which suits your alignment */
 }
 </style>
