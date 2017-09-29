@@ -4,9 +4,9 @@
       <b-col cols="1"></b-col>
 
       <b-col cols="3">
-        <button type="button" v-if="this.username != null" class="btn btn-info" data-toggle="collapse" data-target="#demo">Write a review</button>
+        <button type="button" v-if="this.username != null" class="btn btn-info" data-toggle="collapse" data-target="#newReview">Write a review</button>
         <br>
-        <div id="demo" class="collapse">
+        <div id="newReview" class="collapse">
           <form action="/api/reviews/create" method="post">
             <div class="form-group">
               <label for="title">Title</label>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 
       <div class="container">
 
@@ -13,7 +13,7 @@
           <span class="navbar-toggler-icon"></span>
 
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse owo" id="navbarResponsive">
 
           <ul class="navbar-nav ml-auto">
 
@@ -34,6 +34,7 @@
         </div>
       </div>
     </nav>
+
     <!-- the router outlet, where all matched components would ber viewed -->
 
     <!--  <router-link v-bind:to="'/about'">About</router-link> -->
@@ -108,4 +109,6 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
+
+
 </style>

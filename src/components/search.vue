@@ -4,6 +4,7 @@
       <b-col></b-col>
       <b-col cols="8">
         <div>
+          <br>
           <H1>Search for an artist</H1>
           <form @submit.stop.prevent="artistSearch">
             <b-form-input type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
