@@ -41,7 +41,7 @@
         <div id="albumList">
           <ul>
 
-            <li v-for="data in albumResult" v-bind:key="data">
+            <li class="inline" v-for="data in albumResult" v-bind:key="data">
               <div class="albumTab">
                 <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
                 <!--  fix routing!!! -->
@@ -53,13 +53,13 @@
 
                 <ul>
 
-                  <li v-if="data.release_date == undefined"> Date: Not found </li>
-                  <li v-else> Date: {{ data.release_date }} </li>
+                  <li class="inline" v-if="data.release_date == undefined"> Date: Not found </li>
+                  <li class="inline"v-else> Date: {{ data.release_date }} </li>
 
-                  <li>
+                  <li class="inline">
                     <b-button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
                   </li>
-                  <li>
+                  <li class="inline">
                     <b-dropdown id="" text="Songs">
 
                       <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
@@ -111,7 +111,7 @@
             <ul>
               <li v-for="data in reviewResult" v-bind:key="data">
                 <div class="row">
-                  <div class="col-sm-7">
+                  <div class="col-sm-12">
                     <hr/>
                     <div class="review-block">
                       <div class="row">
@@ -245,7 +245,7 @@ ul {
   padding: 0;
 }
 
-li {
+.inline {
   display: inline-block;
   margin: 0 10px;
 }
@@ -304,11 +304,14 @@ a {
 }
 
 .review-block {
-  background-color: #FAFAFA;
+  background-color: white;
   border: 1px solid #EFEFEF;
   padding: 15px;
   border-radius: 3px;
   margin-bottom: 15px;
+  width: 90%;
+   margin-left: auto;
+  margin-right: auto;
 }
 
 .review-block-name {
@@ -380,4 +383,6 @@ a {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+
 </style>
