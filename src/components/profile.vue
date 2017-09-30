@@ -2,17 +2,15 @@
   <div class="profile">
     <br>
     <p></p>
-    <login></login>
+  
      <br>
-    <b-btn v-b-modal="'regform'">Register</b-btn>
-     <register></register>
+  
     <p></p>
 
   </div>
 </template>
 <script>
-import register from './register.vue'
-import login from './login.vue'
+
 
 export default {
   name: 'profile',
@@ -22,8 +20,7 @@ export default {
     }
   },
   components: {
-    register,
-    login
+
   }
 
 }

@@ -30,7 +30,7 @@
             </li>
 
             <li class="nav-item owo" v-else>
-              <router-link class="nav-link" v-bind:to="'/profile'">Login</router-link>
+              <router-link class="nav-link" v-bind:to="'/login'">Login</router-link>
             </li>
 
           </ul>

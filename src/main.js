@@ -20,19 +20,22 @@ import artist from './components/artist.vue'
 
 import album from './components/album.vue'
 
+import login from './components/login.vue'
 
 
 const routes = [
-  
+
   { path: '/', component: search },
-  
+
   { path: '/profile', component: profile },
+
+  { path: '/login', component: login },
 
   { name: 'profile', path: '/profile/:name', component: profile },
 
-  {name: 'artist', path: '/artist/:name/:id', component: artist},
+  { name: 'artist', path: '/artist/:name/:id', component: artist },
 
-  {name: 'album', path: '/album/:title/:id', component: album},
+  { name: 'album', path: '/album/:title/:id', component: album },
 
 ]
 
