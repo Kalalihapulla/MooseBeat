@@ -5,6 +5,14 @@ const request = require('request');
 const twitter = "/static/img/twitter.png"
 const bbcmusic = "/static/img/bbcmusic.png"
 const lyrics = "/static/img/lyrics.jpg"
+const instagram = "/static/img/instagram.png"
+const facebook = "/static/img/facebook.png"
+const discogs = "/static/img/discogs.png"
+const home = "/static/img/home.jpg"
+const wikipedia = "/static/img/wikipedia.png"
+const youtube = "/static/img/youtube.png"
+const spotify = "/static/img/spotify.png"
+
 
 router.get('/artists/:query/', function (req, res) {
 
@@ -30,11 +38,15 @@ router.get('/artists/info/:mbid/', function (req, res) {
     console.log("Info retrieved");
     let result = JSON.parse(body);
     let info = [];
+    let check = true;
+    let check2 = true;
+    let check3 = true;
 
 
     for (let value of result.relations) {
       let urlN = value.url.resource;
       let typeN = value.type;
+
 
       if (urlN.includes("twitter")) {
         info.push({ url: urlN, type: typeN, picture: twitter, name: 'Twitter' });
@@ -44,19 +56,44 @@ router.get('/artists/info/:mbid/', function (req, res) {
         info.push({ url: urlN, type: typeN, picture: bbcmusic, name: 'BBC Music' });
 
       }
-      else if (urlN.includes("lyrics.wikia")) {
+      else if (urlN.includes("lyrics.wikia") && check2) {
         info.push({ url: urlN, type: typeN, picture: lyrics, name: 'Lyrics wikia' });
+        check2 = false;
 
+      }
+      else if (urlN.includes("facebook")) {
+        info.push({ url: urlN, type: typeN, picture: facebook, name: 'Facebook' });
+
+      }
+      else if (urlN.includes("instagram")) {
+        info.push({ url: urlN, type: typeN, picture: instagram, name: 'Instagram' });
+
+      }
+      else if (typeN.includes("official homepage") && check) {
+        info.push({ url: urlN, type: typeN, picture: home, name: 'Home page' });
+        check = false;
+
+      }
+      else if (urlN.includes("discogs")) {
+        info.push({ url: urlN, type: typeN, picture: discogs, name: 'Discogs' });
+
+      }
+      else if (urlN.includes("wikipedia")) {
+        info.push({ url: urlN, type: typeN, picture: wikipedia, name: 'Wikipedia' });
+
+      }
+      else if (urlN.includes("youtube") && check3) {
+        info.push({ url: urlN, type: typeN, picture: youtube, name: 'Youtube' });
+        check3 = false;
+      }
+      else if (urlN.includes("spotify")) {
+        info.push({ url: urlN, type: typeN, picture: spotify, name: 'Spotify' });
+  
       }
     }
 
 
     res.json(info);
-
-    /*     result.push(
-          {}
-        ); */
-
 
   });
 
