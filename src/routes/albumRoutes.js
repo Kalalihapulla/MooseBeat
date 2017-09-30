@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-
+const Album = require('./../models/album');
 
 router.get('/albums2/:mbid', function (req, res) {
 
@@ -12,7 +12,7 @@ router.get('/albums2/:mbid', function (req, res) {
     }
   }, function (error, response, body) {
 
-    console.log("albums retrieved");
+    console.log("albums retrieved1");
     res.send(body);
 
 
@@ -43,7 +43,7 @@ router.get('/albums/:artist', function (req, res) {
     if (!error && response.statusCode == 200) {
 
 
-      console.log("albums retrieved");
+      console.log("albums retrieved2");
       res.send(body);
 
     }
@@ -63,7 +63,7 @@ router.get('/albums/save/:artist/:title', function (req, res) {
       console.log(firstObj.title);
 
 
-      const Album = require('./../models/album');
+
       const albumN = new Album({
         title: firstObj.title,
         artist: firstObj.artist,
@@ -89,8 +89,6 @@ router.get('/albums/save/:artist/:title', function (req, res) {
 });
 
 
-
-
 router.get('/albums/cover/:mbid', function (req, res) {
 
   request.get({ url: "https://coverartarchive.org/release-group/" + req.params.mbid }, function (error, response, body) {
@@ -104,26 +102,31 @@ router.get('/albums/cover/:mbid', function (req, res) {
 });
 
 router.get('/albums/cover/:mbid', function (req, res) {
-  
-    request.get({ url: "https://coverartarchive.org/release-group/" + req.params.mbid }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log("cover retrieved");
-        res.send(JSON.parse(body));
-  
-  
-      }
-    });
+
+  request.get({ url: "https://coverartarchive.org/release-group/" + req.params.mbid }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("cover retrieved");
+      res.send(JSON.parse(body));
+
+
+    }
+  });
+});
+router.get('/albums/get/all', function (req, res) {
+console.log("ow");
+  Album.find(function (err, albums) {
+    albums.sort(function(a, b){
+      return b.added - a.added;
   });
 
+    res.send(albums);
+  });
+
+});
 
 
 
 
-function ifExists(){
-
-
-
-}
 
 
 

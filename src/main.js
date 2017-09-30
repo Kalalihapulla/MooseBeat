@@ -22,6 +22,8 @@ import album from './components/album.vue'
 
 import login from './components/login.vue'
 
+import statistics from './components/statistics.vue'
+
 
 const routes = [
 
@@ -30,6 +32,8 @@ const routes = [
   { path: '/profile', component: profile },
 
   { path: '/login', component: login },
+
+  { path: '/statistics', component: statistics },
 
   { name: 'profile', path: '/profile/:name', component: profile },
 

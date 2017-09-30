@@ -19,7 +19,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
           <ul class="navbar-nav ml-auto">
-
+            <li class="nav-item" >
+              <router-link class="nav-link" v-bind:to="'/statistics'">Statistics</router-link>
+            </li>
             <li class="nav-item" v-if="this.username != null">
               <router-link class="nav-link owo" v-bind:to="'/profile/'+ username">Profile {{username}}</router-link>
             </li>
@@ -46,7 +48,6 @@
       <router-view></router-view>
     </div>
 
-   
   </div>
 </template>
 
@@ -91,32 +92,46 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
-body, h1, h2, h3, h4, h5, h6 {
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
+
 .navbar {
   background-color: #1a407e;
 }
+
 .navbar .navbar-brand {
   color: #ecf0f1;
 }
+
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus {
   color: #a7dff4;
 }
+
 .navbar .navbar-text {
   color: #ecf0f1;
 }
+
 .navbar .navbar-nav .nav-link {
   color: #ecf0f1;
   border-radius: .25rem;
   margin: 0 0.25em;
 }
+
 .navbar .navbar-nav .nav-link:not(.disabled):hover,
 .navbar .navbar-nav .nav-link:not(.disabled):focus {
   color: #a7dff4;
 }
+
 .navbar .navbar-nav .nav-item.active .nav-link,
 .navbar .navbar-nav .nav-item.active .nav-link:hover,
 .navbar .navbar-nav .nav-item.active .nav-link:focus,
@@ -126,23 +141,29 @@ body, h1, h2, h3, h4, h5, h6 {
   color: #a7dff4;
   background-color: #0091c5;
 }
+
 .navbar .navbar-toggle {
   border-color: #0091c5;
 }
+
 .navbar .navbar-toggle:hover,
 .navbar .navbar-toggle:focus {
   background-color: #0091c5;
 }
+
 .navbar .navbar-toggle .navbar-toggler-icon {
   color: #ecf0f1;
 }
+
 .navbar .navbar-collapse,
 .navbar .navbar-form {
   border-color: #ecf0f1;
 }
+
 .navbar .navbar-link {
   color: #ecf0f1;
 }
+
 .navbar .navbar-link:hover {
   color: #a7dff4;
 }
@@ -206,18 +227,19 @@ body, h1, h2, h3, h4, h5, h6 {
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
   color: #ecf0f1;
 }
+
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
   color: #a7dff4;
 }
+
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
   color: #a7dff4;
   background-color: #0091c5;
 }
 
-#render {
+#render {}
 
-}
 
 /* .owo {
 

@@ -13,6 +13,7 @@ const albumSchema = new Schema({
   media: [{}],
   year: String,
   added: Number,
+  cover: String,
   created_at: Date
 });
 

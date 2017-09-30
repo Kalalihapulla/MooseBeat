@@ -157,7 +157,7 @@ router.get('/user/albums/add/:artist/:title', function (req, res) {
 
     });
 
-  res.send("Added")
+  res.send("Added " + req.params.title);
 
 });
 
