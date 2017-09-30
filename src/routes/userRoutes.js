@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('./../models/user');
 const request = require('request');
+const Album = require('./../models/album');
 
 
 
@@ -107,10 +108,11 @@ router.get('/user/albums/add/:artist/:title', function (req, res) {
   //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
   User.findOne({ 'username': req.user.username }, function (err, user) {
+
     user.albums.push(
       { artist: req.params.artist, title: req.params.title }
     );
-    user.save(function (err) {
+    user.save(err => {
 
       if (err) throw err;
 
@@ -118,42 +120,106 @@ router.get('/user/albums/add/:artist/:title', function (req, res) {
     });
 
   });
-  res.send("Added")
-});
-router.get('/user/albums/get/:username', function (req, res) {
-  //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
-  var jsonArtist = [];
-  User.findOne({ 'username': req.params.username }, function (err, user) {
 
+  var lul = check(req.params.title).then(function (fulfilled) {
 
-    let result = user.albums;
+    if (fulfilled == null) {
 
+      const albumN = new Album({
+        title: req.params.title,
+        artist: req.params.artist,
+        created_at: new Date(),
+        added: 1
+      });
+      albumN.save(err => {
 
+        if (err) throw err;
 
+        console.log('Album saved successfully!');
+      });
 
-    for (let value of result) {
-      if (value != null) {
+    }
+    else {
+      fulfilled.addOne();
+      fulfilled.save(err => {
 
-        request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + value.title + "&artist=" + value.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
+        if (err) throw err;
 
-            let obj = JSON.parse(body);
-            let firstObj = obj[0];
-            jsonArtist.push(firstObj);
-            res.send(jsonArtist);
-          }
-
-        });
-
-      }
+        console.log('Album updated successfully!');
+      });
 
     }
 
+  })
+    .catch(function (error) {
+
+      console.log(error.message);
+
+    });
+
+  res.send("Added")
+
+});
+
+var check = function (title) {
+  return new Promise(
+    function (resolve, reject) {
+      Album.findOne({ 'title': title }, function (err, album) {
+
+        if (album != null) {
+          console.log("found");
+          resolve(album);
+
+        }
+        else {
+          console.log("not found");
+
+          resolve(null);
+        }
+      });
+
+
+    }
+  );
+}
+
+
+
+router.get('/user/albums/get/:username', function (req, res) {
+  //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
+
+  User.findOne({ 'username': req.params.username }, function (err, user) {
+
+
+    const result = user.albums;
+
+    res.send(result);
+
+
+    /*  for (let value of result) {
+       if (value != null) {
  
+         request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + value.title + "&artist=" + value.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1" }, function (error, response, body) {
+           if (!error && response.statusCode == 200) {
+ 
+             let obj = JSON.parse(body);
+             let firstObj = obj[0];
+             jsonArtist.push(firstObj);
+             res.send(jsonArtist);
+           }
+ 
+         });
+ 
+       }
+ 
+     } */
+
+
 
   });
 
 
 });
+
 
 module.exports = router;

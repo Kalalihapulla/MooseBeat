@@ -16,13 +16,13 @@
                   <!--   <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link> -->
                   <!--  fix routing!!! -->
                   <!--  ADD BACK BUTTON -->
-                   <a :href='data.url' target="_blank">{{data.name}}</a>
-                
+                  <a :href='data.url' target="_blank">{{data.name}}</a>
+
                   <div class="infoPic">
                     <a :href='data.url' target="_blank">
                       <img class="albumPicture" :src='data.picture' alt='img' />
                     </a>
-                    
+
                   </div>
 
                 </div>

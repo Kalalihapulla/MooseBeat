@@ -58,19 +58,20 @@ router.get('/albums/save/:artist/:title', function (req, res) {
 
 
 
-      let obj = JSON.parse(body);
-      let firstObj = obj[0];
+      const obj = JSON.parse(body);
+      const firstObj = obj[0];
       console.log(firstObj.title);
 
 
-      let Album = require('./../models/album');
-      let albumN = new Album({
+      const Album = require('./../models/album');
+      const albumN = new Album({
         title: firstObj.title,
         artist: firstObj.artist,
         genre: firstObj.genre,
         media: firstObj.media,
         year: firstObj.year,
-        created_at: new Date()
+        created_at: new Date(),
+        added: 1
       });
       res.json(JSON.parse(body));
 
@@ -102,6 +103,27 @@ router.get('/albums/cover/:mbid', function (req, res) {
   });
 });
 
+router.get('/albums/cover/:mbid', function (req, res) {
+  
+    request.get({ url: "https://coverartarchive.org/release-group/" + req.params.mbid }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log("cover retrieved");
+        res.send(JSON.parse(body));
+  
+  
+      }
+    });
+  });
+
+
+
+
+
+function ifExists(){
+
+
+
+}
 
 
 

@@ -6,19 +6,25 @@ autoIncrement.initialize(connection);
 
 // create a schema  unique: true 
 const albumSchema = new Schema({
-  
-  title: { type: String, required: true},
-  artist: String,
+
+  title: { type: String, required: true },
+  artist:{ type: String, required: true },
   genre: String,
-  media:  [{}],
+  media: [{}],
   year: String,
+  added: Number,
   created_at: Date
 });
 
-albumSchema.plugin(autoIncrement.plugin,'Album', {
+albumSchema.plugin(autoIncrement.plugin, 'Album', {
   startAt: 0
 });
-const Album = mongoose.model('Album', albumSchema,'albums');
+
+albumSchema.methods.addOne = function () {
+  this.added += 1;
+
+};
+const Album = mongoose.model('Album', albumSchema, 'albums');
 
 // make this available to our users in our Node applications
 module.exports = Album;
