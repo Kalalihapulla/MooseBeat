@@ -29,8 +29,6 @@ const routes = [
 
   { path: '/', component: search },
 
-  { path: '/profile', component: profile },
-
   { path: '/login', component: login },
 
   { path: '/statistics', component: statistics },
