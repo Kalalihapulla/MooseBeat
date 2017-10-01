@@ -104,13 +104,13 @@ router.get('/user/create/:name/:password', function (req, res) {
   });
 });
 
-router.get('/user/albums/add/:artist/:title', function (req, res) {
+router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
   //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
   User.findOne({ 'username': req.user.username }, function (err, user) {
 
     user.albums.push(
-      { artist: req.params.artist, title: req.params.title }
+      { artist: req.params.artist, title: req.params.title, cover: 'https://coverartarchive.org/release-group/' + req.params.mbid + '/front.jpg', mbid: req.params.mbid }
     );
     user.save(err => {
 
@@ -191,9 +191,9 @@ router.get('/user/albums/get/:username', function (req, res) {
   User.findOne({ 'username': req.params.username }, function (err, user) {
 
 
-    const result = user.albums;
+    let result = user.albums;
 
-    res.send(result);
+    res.send(result.filter(x => !!x));
 
 
     /*  for (let value of result) {

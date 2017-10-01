@@ -79,7 +79,7 @@
                   <li class="inline" v-else> Date: {{ data.release_date }} </li>
 
                   <li class="inline">
-                    <b-button :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+                    <b-button :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
                   </li>
                   <li class="inline">
                     <b-dropdown id="" text="Songs">
