@@ -56,7 +56,7 @@
 
             <li class="inline" v-for="data in albumResult" v-bind:key="data">
               <div class="albumTab">
-                <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link>
+                <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id, artist: $route.params.name  }}"> {{ data.title }} </router-link>
                 <!--  fix routing!!! -->
 
                 <!--  ADD BACK BUTTON -->
@@ -70,7 +70,7 @@
                   <li class="inline" v-else> Date: {{ data.release_date }} </li>
 
                   <li class="inline">
-                    <b-button :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+                    <b-button target="_blank" :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
                   </li>
                   <li class="inline">
                     <b-dropdown id="" text="Songs">
@@ -234,7 +234,7 @@ export default {
     axios.get("/api/spotify/get/toptracks/" + this.$route.params.spotify)
       .then((response) => {
         this.spotifyResult = response.data.tracks;
-      
+
       })
       .catch(function(error) {
         alert(error);
