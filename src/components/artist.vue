@@ -57,9 +57,7 @@
             <li class="inline" v-for="data in albumResult" v-bind:key="data">
               <div class="albumTab">
                 <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id, artist: $route.params.name  }}"> {{ data.title }} </router-link>
-                <!--  fix routing!!! -->
 
-                <!--  ADD BACK BUTTON -->
                 <div class="albumPic">
                   <img class="albumPicture" :src="'https://coverartarchive.org/release-group/' + data.album_musicbrainz_id + '/front.jpg'" alt="Album cover not found" />
                 </div>
@@ -86,15 +84,14 @@
           </ul>
         </div>
 
-        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="90%" img-height="20em" background="#ababab" :interval="4000" v-model="slide" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
+        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="20em" background="#a7abb2" :interval="4000" v-model="slide">
 
 
-          <b-carousel-slide v-for="data in recResult" v-bind:key="data" caption={{ data.name }} img-blank img-alt="Blank image">
+          <b-carousel-slide id="recSlide" v-for="data in recResult" v-bind:key="data">
+              <h1 id="recText"> {{ data.name}} </h1>
 
-            <img id="recImg" src= {{ data.images.ur[0]}} alt="img">
-            <p> {{ data.name}} </p>
-
-
+            <img id="recImage" slot="img"  :src="data.images[0].url" alt="N/A">
+            <!-- <img id="recImage2" slot="img"  :src="data.images[0].url" alt="img"> -->
           </b-carousel-slide>
 
         </b-carousel>
@@ -220,13 +217,11 @@ export default {
     }
   },
   created: function() {
-    alert(this.$route.params.spotify);
+  
 
      axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
       .then((response) => {
         this.recResult = response.data.artists;
-       
-        alert("pop");
         
       })
       .catch(function(error) {
@@ -480,11 +475,29 @@ a {
 
 
 
-#recImg {
-  float: right;
-  border-radius: 4px;
-  border: 5px solid #1d2120;
-  height: 7em;
-  width: 7em;
+#recImage {
+ width: 50%;
+height: 100%;
 }
+
+/* #recImage2 {
+ width: 50%;
+height: 100%;
+float: left;
+} */
+
+#recText {
+  font-weight: bold;
+  font-size: 3em;
+}
+
+#recSlide {
+  width: 100%;
+  height: 20em;
+}
+
+#albumlist {
+  margin-bottom: 2em;
+}
+
 </style>
