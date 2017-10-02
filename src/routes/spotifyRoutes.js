@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQBqrOEVzpJEpBd7XBKmGSf1J_6Gmv0wu4UDMXYjgYkMsD_CppTUBrkzbOPH6Ls5LkcPljEgY8kXCy6bzweljHx-8_eojZ9xFjMtI-fzRkJLHSE2ZDmqrKDh3x1i2eeEv9usXwY2Bzlb';
+const token = 'BQBqrOEVzpJEpBd7XBKmGSf1J_6Gmv0wu4UDMXYjgYkMsD_CppTUBrkzbOPH6Ls5LkcPljEgY8kXCy6bzweljHx';
 const rp = require('request-promise');
 const axios = require('axios');
-
 
 
 router.get('/spotify/get/token/', function (req, res) {
