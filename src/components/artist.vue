@@ -88,11 +88,12 @@
 
         <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="90%" img-height="20em" background="#ababab" :interval="4000" v-model="slide" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
 
-          <!-- Text slides with image -->
 
-          <b-carousel-slide caption="ForsenBoys" img-blank img-alt="Blank image">
+          <b-carousel-slide v-for="data in recResult" v-bind:key="data" caption={{ data.name }} img-blank img-alt="Blank image">
 
-            <img id="recImg" src="https://ih0.redbubble.net/image.226441965.6955/flat,800x800,075,t.jpg" alt="img">
+            <img id="recImg" src= {{ data.images.ur[0]}} alt="img">
+            <p> {{ data.name}} </p>
+
 
           </b-carousel-slide>
 
@@ -211,6 +212,7 @@ export default {
       reviewResult: '',
       infoResult: '',
       spotifyResult: '',
+      recResult: '',
       average: 0,
       id: this.$route.params.id,
       username: null,
@@ -218,6 +220,18 @@ export default {
     }
   },
   created: function() {
+    alert(this.$route.params.spotify);
+
+     axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
+      .then((response) => {
+        this.recResult = response.data.artists;
+       
+        alert("pop");
+        
+      })
+      .catch(function(error) {
+       
+      });
     axios.get("/api/user/get/")
       .then((response) => {
         this.username = response.data;
@@ -261,6 +275,7 @@ export default {
       .catch(function(error) {
         alert(error);
       });
+      
   },
   methods: {
     coverNotFound() {
