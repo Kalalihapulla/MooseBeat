@@ -11,24 +11,19 @@
         <iframe :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
         <div id="artistDetails">
+          <ul>
+            <li> Year formed: </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
+            <li> .... </li>
 
-          <div id="artistStuff">
-
-            <ul>
-              <li> Year formed: </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-              <li> .... </li>
-
-              <p>More stuff...</p>
-            </ul>
-          </div>
-
+            <p>More stuff...</p>
+          </ul>
           <div id="infoList">
 
             <div class="infoPic" v-for="data in infoResult" v-bind:key="data">
@@ -170,6 +165,18 @@
             </ul>
           </div>
         </div>
+        <div id="artistStuff">
+
+          <ul>
+            <li v-for="data in spotifyResult" v-bind:key="data">
+              {{data.uri}}
+              <iframe :src="'https://open.spotify.com/embed?uri='+data.uri" frameborder="0" allowtransparency="true"></iframe>
+
+            </li>
+
+            <p>More stuff...</p>
+          </ul>
+        </div>
 
         <div id="artistRecommendations">
 
@@ -191,6 +198,7 @@ export default {
       picResult: '',
       reviewResult: '',
       infoResult: '',
+      spotifyResult: '',
       average: 0,
       id: this.$route.params.id,
       username: null,
@@ -207,6 +215,14 @@ export default {
     axios.get("/api/albums/" + this.$route.params.name)
       .then((response) => {
         this.albumResult = response.data.data;
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+    axios.get("/api/spotify/get/toptracks/" + this.$route.params.spotify)
+      .then((response) => {
+        this.spotifyResult = response.data.tracks;
+      
       })
       .catch(function(error) {
         alert(error);
