@@ -27,7 +27,7 @@ export default {
   created: function() {
     axios.get("/api/albums/get/" + this.$route.params.artist + "/" + this.$route.params.title)
       .then((response) => {
-        this.trackData = response.data.media.tracks;
+        this.trackData = response.data;
         this.albumData = response.data;
       alert(JSON.stringify(this.trackData));
       })
