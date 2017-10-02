@@ -2,52 +2,47 @@
   <div class="artist">
 
     <div class="artistBody">
+
       <div class="artistInfo">
         <div id="artistTitle">
           <h1>{{$route.params.name}}</h1>
           <br>
         </div>
+
         <div id="artistDetails">
-          <div id="infoList">
+
+          <div id="artistStuff">
+
             <ul>
-              <li class="inline" v-for="data in infoResult" v-bind:key="data">
-                <div class="infoTab">
+              <li> Year formed: </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
+              <li> .... </li>
 
-                  <!--   <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.album_musicbrainz_id   }}"> {{ data.title }} </router-link> -->
-                  <!--  fix routing!!! -->
-                  <!--  ADD BACK BUTTON -->
-                  <a :href='data.url' target="_blank">{{data.name}}</a>
-
-                  <div class="infoPic">
-                    <a :href='data.url' target="_blank">
-                      <img class="albumPicture" :src='data.picture' alt='img' />
-                    </a>
-
-                  </div>
-
-                </div>
-              </li>
+              <p>More stuff...</p>
             </ul>
           </div>
 
-          <ul>
-            <li> Year formed: </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <p>More stuff...</p>
-          </ul>
+          <div id="infoList">
+
+            <div class="infoPic" v-for="data in infoResult" v-bind:key="data">
+              <a :href='data.url' target="_blank">
+                <img class="albumPicture" :src='data.picture' alt='img' />
+              </a>
+
+            </div>
+
+          </div>
 
         </div>
 
-        <div id="spotifyPlayer">
-          <p>
-            Spotify Here
-          </p>
-
+        <div id="spotifyCont">
+          <iframe id="spotifyPlayer" src="https://open.spotify.com/embed?uri=spotify%3Aalbum%3A41bTjcSaiEe4G40RVVHbux&theme=white" frameborder="0" allowtransparency="true"></iframe>
         </div>
 
       </div>
@@ -287,15 +282,7 @@ a {
   margin: 1em;
 }
 
-.infoPic {
-  border-radius: 4px;
-  border: 5px solid #1d2120;
-  height: 5em;
-  width: 5em;
-  display: block;
-  margin: auto;
-  margin: 1em;
-}
+
 
 .albumPicture {
   width: 100%;
@@ -362,7 +349,7 @@ a {
 .artistInfo {
   margin: 1% 3% 3% 3%;
   width: 29%;
-  height: 85%;
+  height: 90%;
   float: left;
   position: fixed;
   background: whitesmoke;
@@ -379,13 +366,27 @@ a {
 }
 
 #spotifyPlayer {
-  width: 80%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+#spotifyCont {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 35%;
+  width: 85%;
+  margin: auto;
 }
 
 #artistDetails {
   height: 50%;
-  width: 80%;
+  width: 100%;
 }
 
 .artistBody {
@@ -403,5 +404,33 @@ a {
   margin-right: auto;
   margin-top: 2em;
   margin-bottom: 2em;
+}
+
+#infoList {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+  margin: auto;
+  width: 85%;
+  height: 35%; 
+}
+
+.infoPic {
+  border-radius: 4px;
+  border: 2px solid #1d2120;
+  height: 3em;
+  width: 3em;
+  margin: 1em;
 }
 </style>
