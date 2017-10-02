@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQBQVJ7zk7Sp9sqW1v9WopO6okMvYBhQvTeVsIWYEtIKgoCkUg1wTkEBBJJL1FrXoP7Iz3RUoYnWdBsLMsuoMV78htt6MQzwwdHr4sV_gfeLhyKynF9g0KKT9l1IdXbxjggA4_omkMZk';
+const token = 'BQA_9-EmQejMGifbMBXsFbg3UN8NbmYECsJDM1aXVlyb6O0EvrRRKsJ8tif9OqJaE03puu8PzYbPrjPJGkXklNuym2I8UzqU4EZ3qKxCwQkh0OU9Y4wM4CiHqkGnnXdDK-LM1q6MXnAF';
 const rp = require('request-promise');
 const axios = require('axios');
 
@@ -73,7 +73,7 @@ router.get('/spotify/get/toptracks/:artistId', function (req, res) {
         if (!error && response.statusCode == 200) {
 
             res.send(body);
-
+// 
         }
     }
 
