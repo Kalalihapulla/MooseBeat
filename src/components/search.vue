@@ -9,7 +9,7 @@
           <form @submit.stop.prevent="artistSearch">
             <b-form-input type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
             <p></p>
-            <b-button type="submit" variant="primary">Search!</b-button>
+            <b-button type="submit" class="search-but">Search</b-button>
           </form>
         </div>
       </b-col>
@@ -88,5 +88,10 @@ export default {
 
 #searchResults {
   font-size: 1.5em;
+}
+.search-but {
+  color: #fff;
+  background-color: #9C27B0;
+  border-color: #9C27B0;
 }
 </style>

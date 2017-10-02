@@ -1,13 +1,14 @@
 <template>
   <div id="app">
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 
       <div class="container">
 
         <div>
           <router-link class="navbar-brand" v-bind:to="'/'">
-            <img src="/static/img/moose.png" width="30" height="30" class="d-inline-block align-top" alt=""> MooseBeat
+            <img src="/static/img/logo_and_name/logo/icon1-white.png" style="width:auto; height:30px" class="d-inline-block align-top" alt="">
+            <img src="/static/img/logo_and_name/name/name1-white.png" style="width:auto; height:30px" class="d-inline-block align-top" alt="">
           </router-link>
 
         </div>
@@ -105,7 +106,7 @@ h6 {
 }
 
 .navbar {
-  background-color: #1a407e;
+  background-color: #9C27B0;
 }
 
 .navbar .navbar-brand {
