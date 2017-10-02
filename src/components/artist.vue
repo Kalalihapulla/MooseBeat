@@ -84,14 +84,26 @@
           </ul>
         </div>
 
-        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="20em" background="#a7abb2" :interval="4000" v-model="slide">
-
+        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="25em" background="whitesmoke" :interval="4000" v-model="slide">
 
           <b-carousel-slide id="recSlide" v-for="data in recResult" v-bind:key="data">
-              <h1 id="recText"> {{ data.name}} </h1>
+            <h1 id="recText"> {{ data.name}} </h1>
+            <iframe id="recFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+data.id+'&size=detail&theme=light'" frameborder="0" allowtransparency="false"></iframe>
+            <b-dropdown id="recGenres" text="Genres" variant="primary">
+              <b-dropdown-header> {{ data.genres[0]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[1]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[2]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[3]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[4]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[5]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[6]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[7]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[8]}} </b-dropdown-header>
+              <b-dropdown-header> {{ data.genres[9]}} </b-dropdown-header>
 
-            <img id="recImage" slot="img"  :src="data.images[0].url" alt="N/A">
-            <!-- <img id="recImage2" slot="img"  :src="data.images[0].url" alt="img"> -->
+            </b-dropdown>
+
+            <img id="recImage" slot="img" :src="data.images[0].url" alt="N/A">
           </b-carousel-slide>
 
         </b-carousel>
@@ -217,15 +229,15 @@ export default {
     }
   },
   created: function() {
-  
 
-     axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
+
+    axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
       .then((response) => {
         this.recResult = response.data.artists;
-        
+
       })
       .catch(function(error) {
-       
+
       });
     axios.get("/api/user/get/")
       .then((response) => {
@@ -270,7 +282,7 @@ export default {
       .catch(function(error) {
         alert(error);
       });
-      
+
   },
   methods: {
     coverNotFound() {
@@ -476,15 +488,10 @@ a {
 
 
 #recImage {
- width: 50%;
-height: 100%;
+  width: 50%;
+  height: 100%;
 }
 
-/* #recImage2 {
- width: 50%;
-height: 100%;
-float: left;
-} */
 
 #recText {
   font-weight: bold;
@@ -492,12 +499,26 @@ float: left;
 }
 
 #recSlide {
-  width: 100%;
-  height: 20em;
+  width: 90%;
+  height: 25em;
+  background: #a3a8af;
+  margin: auto;
+  border-radius: 4px;
 }
 
 #albumlist {
   margin-bottom: 2em;
 }
 
+#recGenres {
+  margin-right: -15em;
+  text-shadow: none !important;
+  font-size: 2em;
+}
+
+#recFollow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 </style>
