@@ -83,13 +83,14 @@
             </li>
           </ul>
         </div>
+        <div id="recommendations">
 
         <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="25em" background="whitesmoke" :interval="4000" v-model="slide">
 
           <b-carousel-slide id="recSlide" v-for="data in recResult" v-bind:key="data">
             <h1 id="recText"> {{ data.name}} </h1>
             <iframe id="recFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+data.id+'&size=detail&theme=light'" frameborder="0" allowtransparency="false"></iframe>
-            <b-dropdown id="recGenres" text="Genres" variant="primary">
+            <b-dropdown id="recGenres" dropup text="Genres" variant="primary">
               <b-dropdown-header> {{ data.genres[0]}} </b-dropdown-header>
               <b-dropdown-header> {{ data.genres[1]}} </b-dropdown-header>
               <b-dropdown-header> {{ data.genres[2]}} </b-dropdown-header>
@@ -99,7 +100,7 @@
               <b-dropdown-header> {{ data.genres[6]}} </b-dropdown-header>
               <b-dropdown-header> {{ data.genres[7]}} </b-dropdown-header>
               <b-dropdown-header> {{ data.genres[8]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[9]}} </b-dropdown-header>
+             
 
             </b-dropdown>
 
@@ -107,6 +108,8 @@
           </b-carousel-slide>
 
         </b-carousel>
+
+        </div>
 
         <div id="artistReviews">
 
@@ -511,14 +514,30 @@ a {
 }
 
 #recGenres {
-  margin-right: -15em;
+  /* margin-right: -15em; */
   text-shadow: none !important;
   font-size: 2em;
+  position: absolute;
+  bottom: 0.8em;
+  right: 0;
+  opacity: 0.8;
 }
 
 #recFollow {
   position: absolute;
-  bottom: 0;
+  bottom: 1.5em;
   left: 0;
+  height: 5.5em;
+  width: 8.6em;
+  padding: 4px;
+  background: whitesmoke;
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.8;
+}
+
+#recommendations {
+  margin-top: 2em;
 }
 </style>
