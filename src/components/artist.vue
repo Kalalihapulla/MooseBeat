@@ -8,7 +8,6 @@
           <h1>{{$route.params.name}}</h1>
           <br>
         </div>
-        <iframe :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
         <div id="artistDetails">
           <ul>
@@ -48,6 +47,7 @@
         <div id="artistDesc">
 
           <H1>This band is a band</H1>
+          <iframe :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
         </div>
 
@@ -85,6 +85,18 @@
             </li>
           </ul>
         </div>
+
+        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="90%" img-height="20em" background="#ababab" :interval="4000" v-model="slide" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
+
+          <!-- Text slides with image -->
+
+          <b-carousel-slide caption="ForsenBoys" img-blank img-alt="Blank image">
+
+            <img id="recImg" src="https://ih0.redbubble.net/image.226441965.6955/flat,800x800,075,t.jpg" alt="img">
+
+          </b-carousel-slide>
+
+        </b-carousel>
 
         <div id="artistReviews">
 
@@ -449,5 +461,15 @@ a {
   height: 3em;
   width: 3em;
   margin: 1em;
+}
+
+
+
+#recImg {
+  float: right;
+  border-radius: 4px;
+  border: 5px solid #1d2120;
+  height: 7em;
+  width: 7em;
 }
 </style>
