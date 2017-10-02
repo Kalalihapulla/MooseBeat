@@ -47,7 +47,29 @@
         <div id="artistDesc">
 
           <H1>This band is a band</H1>
-          <iframe :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+          <iframe id="artistFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+
+          <div id="rating-block">
+            <h4>Average user rating</h4>
+            <h2 class="bold padding-bottom-7">{{this.average}}
+              <small>/ 5</small>
+            </h2>
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            </button>
+          </div>
 
         </div>
 
@@ -85,29 +107,28 @@
         </div>
         <div id="recommendations">
 
-        <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="25em" background="whitesmoke" :interval="4000" v-model="slide">
+          <b-carousel style="text-shadow: 1px 1px 2px #333;" controls indicators img-width="100%" img-height="25em" background="whitesmoke" :interval="4000" v-model="slide">
 
-          <b-carousel-slide id="recSlide" v-for="data in recResult" v-bind:key="data">
-            <h1 id="recText"> {{ data.name}} </h1>
-            <iframe id="recFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+data.id+'&size=detail&theme=light'" frameborder="0" allowtransparency="false"></iframe>
-            <b-dropdown id="recGenres" dropup text="Genres" variant="primary">
-              <b-dropdown-header> {{ data.genres[0]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[1]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[2]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[3]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[4]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[5]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[6]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[7]}} </b-dropdown-header>
-              <b-dropdown-header> {{ data.genres[8]}} </b-dropdown-header>
-             
+            <b-carousel-slide id="recSlide" v-for="data in recResult" v-bind:key="data">
+              <h1 id="recText"> {{ data.name}} </h1>
+              <iframe id="recFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+data.id+'&size=detail&theme=light'" frameborder="0" allowtransparency="false"></iframe>
+              <b-dropdown id="recGenres" dropup text="Genres" variant="primary">
+                <b-dropdown-header> {{ data.genres[0]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[1]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[2]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[3]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[4]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[5]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[6]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[7]}} </b-dropdown-header>
+                <b-dropdown-header> {{ data.genres[8]}} </b-dropdown-header>
 
-            </b-dropdown>
+              </b-dropdown>
 
-            <img id="recImage" slot="img" :src="data.images[0].url" alt="N/A">
-          </b-carousel-slide>
+              <img id="recImage" slot="img" :src="data.images[0].url" alt="N/A">
+            </b-carousel-slide>
 
-        </b-carousel>
+          </b-carousel>
 
         </div>
 
@@ -350,12 +371,7 @@ a {
   color: #FFF;
 }
 
-.rating-block {
-  background-color: #FAFAFA;
-  border: 1px solid #EFEFEF;
-  padding: 15px 15px 20px 15px;
-  border-radius: 3px;
-}
+
 
 .bold {
   font-weight: 700;
@@ -539,5 +555,29 @@ a {
 
 #recommendations {
   margin-top: 2em;
+}
+
+#artistDesc {
+  width: 88%;
+  height: 14em;
+  background: white;
+  margin: auto;
+  margin-top: 1em !important;
+  border-radius: 4px;
+  padding-top: 0.5em;
+
+}
+
+#rating-block {
+  border-radius: 3px;
+  width: 15em;
+  height: 10em;
+  float: left;
+  
+  
+}
+
+#artistFollow {
+  float: right;
 }
 </style>
