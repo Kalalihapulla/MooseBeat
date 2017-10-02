@@ -13,12 +13,12 @@ router.get('/spotify/get/token/', function (req, res) {
         method: 'POST',
         uri: 'https://accounts.spotify.com/api/token',
         body: {
-            grant_type: 'client_credentials'
+            grant_type: "client_credentials"
         },
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic NmY3OGJmZDFkNzVkNGJiN2E0YWRkYWM5MzliNWQ5Yjk6YTM4ZmU5NGY2ZGZmNDBmYjgyN2E3ZjM3ZTFiNTA1MTk='
-        },
+        }
 
 
         // JSON stringifies the body automatically
