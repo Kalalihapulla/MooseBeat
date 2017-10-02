@@ -37,7 +37,7 @@ const routes = [
 
   { name: 'artist', path: '/artist/:name/:id/:spotify', component: artist },
 
-  { name: 'album', path: '/album/:title/:id', component: album },
+  { name: 'album', path: '/album/:title/:id/:artist', component: album },
 
 ]
 
