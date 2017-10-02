@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQDQtCLOcGd4UNJzK1C3oHMvF4fKASKk6Nz58xLvtKjrMbkSaPJJ0vQNqmLvMUde2MWRZqapQqVN9LeldRK9Vw';
+const token = 'BQA-k0usO18N0l8uHpgLMntGYMh9PHkxEs6_1oEZOmDdoKnRNzno27c_jlt4wJzkrlOsWyGFT7FssfJPBXg8R9vVA3rz7y6xuCf9J-4_0fKgPmSvwECdkBQrlzh3CdqJCfS64oMJjRVs';
 const rp = require('request-promise');
 const axios = require('axios');
 
@@ -97,7 +97,22 @@ router.get('/spotify/get/albums/:artistId', function (req, res) {
 
     );
 });
-
+router.get('/spotify/get/related/:artistId', function (req, res) {
+    
+        request.get('https://api.spotify.com/v1/artists/' + req.params.artistId + '/related-artists', {
+            'auth': {
+                'bearer': token
+            }
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+    
+                res.send(body);
+    
+            }
+        }
+    
+        );
+    });
 router.get('/spotify/get/token2/', function (req, res) {
 lul();
 res.send("w");
