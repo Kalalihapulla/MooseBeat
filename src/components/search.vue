@@ -14,22 +14,22 @@
         </div>
       </b-col>
       <b-col></b-col>
-    
+
     </b-row>
     <p></p>
-     <b-row id="searchResults">
+    <b-row id="searchResults">
       <b-col></b-col>
       <b-col cols="8">
         <ol>
           <li v-for="data in resultValue" v-bind:key="data">
-            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id  }}"> {{ data.name }} </router-link>
-            
+            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id, spotify: data.spotify_id  }}"> {{ data.name }} </router-link>
+
           </li>
         </ol>
       </b-col>
       <b-col></b-col>
     </b-row>
-   
+
   </b-container>
 </template>
 
@@ -44,7 +44,7 @@ export default {
     resultValue: "",
   },
 
- 
+
 
 
   data() {
@@ -54,15 +54,15 @@ export default {
     }
   },
 
- methods: {
+  methods: {
 
-  artistSearch() {
+    artistSearch() {
 
-   axios.get("/api/artists/" + this.searchValue)
+      axios.get("/api/artists/" + this.searchValue)
         .then((response) => {
 
           this.resultValue = response.data.data;
-        
+
 
         })
         .catch(function(error) {
@@ -70,8 +70,8 @@ export default {
         });
 
 
+    }
   }
- }
 }
 
 </script>

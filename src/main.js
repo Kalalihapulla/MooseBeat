@@ -35,7 +35,7 @@ const routes = [
 
   { name: 'profile', path: '/profile/:name', component: profile },
 
-  { name: 'artist', path: '/artist/:name/:id', component: artist },
+  { name: 'artist', path: '/artist/:name/:id/:spotify', component: artist },
 
   { name: 'album', path: '/album/:title/:id', component: album },
 

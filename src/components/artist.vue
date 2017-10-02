@@ -8,6 +8,7 @@
           <h1>{{$route.params.name}}</h1>
           <br>
         </div>
+        <iframe :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
         <div id="artistDetails">
 
@@ -423,7 +424,7 @@ a {
   align-content: flex-end;
   margin: auto;
   width: 85%;
-  height: 35%; 
+  height: 35%;
 }
 
 .infoPic {
