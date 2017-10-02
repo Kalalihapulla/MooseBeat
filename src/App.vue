@@ -41,13 +41,6 @@
       </div>
     </nav>
 
-    <section class="home-wrapper">
-      <div class="home-back">
-        <img class="back-img" src="/static/img/background-home.jpg" style="width:100%">
-      </div>
-      
-    </section> 
-
     <!-- the router outlet, where all matched components would ber viewed -->
 
     <!--  <router-link v-bind:to="'/about'">About</router-link> -->
@@ -55,8 +48,6 @@
     <div id="render">
       <router-view></router-view>
     </div>
-
-       
 
   </div>
 </template>
@@ -114,45 +105,9 @@ h6 {
   font-weight: 700;
 }
 
-.navbar { 
-  position: absolute;  
-  background-color:  transparent;
-  border-bottom-width: 0;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(239, 241, 242);
-  border-bottom-width: 0;
-  box-shadow: none;
+.navbar {
+  background-color: #9C27B0;
 }
-.navbar:hover {
-  display: block;
-  border-bottom: 1px solid #eff1f2;  
-  background-color: #9C27B0;  
-  transition-property: all;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-  transition-delay: initial;
-}
-
-.home-back {   
-  top:0px;
-  z-index: -1;  
-  width: auto;
-  height: 100%;  
-  box-shadow: 1px 1px 23px 0 rgba(0,0,0,.6);
-}
-
-.home-wrapper {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.section {
-  width: 100%;
-  display: inline-block;
-}
-
 
 .navbar .navbar-brand {
   color: #ecf0f1;
