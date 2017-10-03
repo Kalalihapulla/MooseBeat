@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQDkWwzwuNzc-PBWhI0VKwJdGVM9C_1guViVdcCUSE07t4uqhjtCKIlHhFK-s5mZD5BFa51eOsznb8pVUy23oeuXyGi3lyX414Ogg6CIdm9SbxYFcga3sN55TpNsp8dbvu8RblVMx6EO';
+const token = 'BQBK3KSGLPfXw8hpTf2ZD_UvO1qCh9M-Rwe8lwZ1oOmBzdYQ-EvRri-ej-8Fl6glbfShrGcfGiYtYOYW1rf023slTw_hQzYoBOiVsZSeoWtXA9OZ0VYLTAN8Yi6q1-JEaRd9CNnq3N73';
 const rp = require('request-promise');
 const axios = require('axios');
 
