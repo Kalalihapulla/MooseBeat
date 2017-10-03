@@ -81,11 +81,7 @@
         </li>
       </ul>
     </div>
-      <audio controls>
-
-          <source src="https://p.scdn.co/mp3-preview/fca4ad6793f9eefad8208a8e559dac88793081f8?cid=8897482848704f2a8f8d7c79726a70d4" type="audio/mpeg">
-
-        </audio>
+     
   </div>
 </template>
 <script>

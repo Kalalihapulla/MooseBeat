@@ -213,9 +213,25 @@
         </div>
         <div id="artistStuff">
 
-          <ul>
-            <li v-for="data in spotifyResult" v-bind:key="data">
-              {{data.uri}}
+          <ul class="list-group row">
+            <li v-for="data in spotifyResult" v-bind:key="data" class="col-sm-12">
+              <div class="col-sm-2">
+                {{data.name}}
+              </div>
+              <div class="col-sm-2">
+                <img class="topImage" :src="data.album.images[2].url" alt="N/A">
+
+              </div>
+
+              <div class="col-sm-12">
+                Popularity {{data.popularity}}
+              </div>
+              <div class="col-sm-12">
+
+                <audio controls>
+                  <source :src="data.preview_url" type="audio/mpeg">
+                </audio>
+              </div>
               <iframe :src="'https://open.spotify.com/embed?uri='+data.uri" frameborder="0" allowtransparency="true"></iframe>
 
             </li>
@@ -371,7 +387,11 @@ a {
   color: #FFF;
 }
 
+audio {
 
+  margin: 0 auto;
+  width: 30%/* value of your choice which suits your alignment */
+}
 
 .bold {
   font-weight: 700;
@@ -565,7 +585,6 @@ a {
   margin-top: 1em !important;
   border-radius: 4px;
   padding-top: 0.5em;
-
 }
 
 #rating-block {
@@ -573,8 +592,6 @@ a {
   width: 15em;
   height: 10em;
   float: left;
-  
-  
 }
 
 #artistFollow {
