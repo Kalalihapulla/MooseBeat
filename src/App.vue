@@ -1,6 +1,14 @@
 <template>
   <div id="app">
 
+<!--    <section class="home-wrapper">
+      <div class="home-back">
+        <img class="back-img" src="/static/img/background-home.jpg" style="width:100%">
+      </div>
+      
+    </section>
+    -->
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 
       <div class="container">
@@ -20,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" >
               <router-link class="nav-link" v-bind:to="'/statistics'">Statistics</router-link>
             </li>
             <li class="nav-item" v-if="this.username != null">
@@ -38,7 +46,10 @@
 
           </ul>
         </div>
+      </div>
     </nav>
+
+   
 
     <!-- the router outlet, where all matched components would ber viewed -->
 
@@ -48,7 +59,9 @@
       <router-view></router-view>
     </div>
 
-    </div>
+       
+
+  </div>
 </template>
 
 
@@ -104,9 +117,45 @@ h6 {
   font-weight: 700;
 }
 
-.navbar {
-  background-color: #1a407e;
+body {
+  background: url(/static/img/free-purple-triangles-vector.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+.navbar {   
+  background-color:  #9C27B0;  
+  border-bottom-style: solid;
+  border-bottom-color: rgb(239, 241, 242);
+  border-bottom-width: 0;
+  box-shadow: none;
+}
+<!--.navbar:hover {
+  display: block;  
+  background-color: #9C27B0;  
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  transition-delay: initial;
+}-->
+
+.home-back { 
+  position: absolute;
+  width: 100%;
+  height: auto;  
+  box-shadow: 1px 1px 23px 0 rgba(0,0,0,.6);
+}
+
+.home-wrapper {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 
 .navbar .navbar-brand {
   color: #ecf0f1;
@@ -239,8 +288,6 @@ h6 {
 }
 
 #render {}
-
-
 
 
 /* .owo {
