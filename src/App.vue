@@ -1,12 +1,13 @@
 <template>
   <div id="app">
 
-    <section class="home-wrapper">
+<!--    <section class="home-wrapper">
       <div class="home-back">
         <img class="back-img" src="/static/img/background-home.jpg" style="width:100%">
       </div>
       
-    </section> 
+    </section>
+    -->
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 
@@ -116,24 +117,31 @@ h6 {
   font-weight: 700;
 }
 
+body {
+  background: url(/static/img/free-purple-triangles-vector.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navbar {   
-  background-color:  transparent;  
+  background-color:  #9C27B0;  
   border-bottom-style: solid;
   border-bottom-color: rgb(239, 241, 242);
   border-bottom-width: 0;
   box-shadow: none;
 }
-.navbar:hover {
+<!--.navbar:hover {
   display: block;  
   background-color: #9C27B0;  
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   transition-delay: initial;
-}
+}-->
 
 .home-back { 
-
+  position: absolute;
   width: 100%;
   height: auto;  
   box-shadow: 1px 1px 23px 0 rgba(0,0,0,.6);
