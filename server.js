@@ -10,7 +10,7 @@ const request = require('request');
 const session = require('express-session');
 // Mongoose
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat');
+mongoose.connect('mongodb://root:root@ds131914.mlab.com:31914/moosebeat', { useMongoClient: true });
 // Passport 
 const passport = require('passport');
 require('./src/config/passport')(passport);
@@ -33,14 +33,17 @@ const bundleRenderer = createBundleRenderer(
   // Load the SSR bundle with require.
   require('./dist/vue-ssr-bundle.json'),
   {
-    // Yes, I know, readFileSync is bad practice. It's just shorter to read here.
     template: fs.readFileSync('./index.html', 'utf-8')
   }
 );
 
 //REST API
 //Passport
-app.use(session({ secret: 'moosebeatbois' })); // session secret
+app.use(session({
+  secret: 'moosebeatbois', 
+  resave: true,
+  saveUninitialized: true
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions 
 
@@ -52,28 +55,19 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 router.get('/logout', function (req, res) {
   console.log(req.user.username + " logout");
-
- /*  let obj = JSON.parse(req.user);
-  let firstObj = obj[0]; */
- /*  res.json(req.user.reviews); */
-/*   console.log(firstObj.username); */
-req.logout();
-res.redirect('/');
+  req.logout();
+  res.redirect('/');
 
 });
 router.get('/user', isLoggedIn, function (req, res) {
 
-
   res.redirect('/profile/' + req.user.username);
 });
 
-
 function isLoggedIn(req, res, next) {
 
-  // if user is authenticated in the session, carry on 
   if (req.isAuthenticated())
     return next();
-
   // if they aren't redirect them to the home page
   res.redirect('/');
 }

@@ -121,7 +121,7 @@ router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
 
   });
 
-  var lul = check(req.params.title).then(function (fulfilled) {
+ const lul = check(req.params.title).then(function (fulfilled) {
 
     if (fulfilled == null) {
 
@@ -129,7 +129,8 @@ router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
         title: req.params.title,
         artist: req.params.artist,
         created_at: new Date(),
-        added: 1
+        added: 1,
+        cover: 'https://coverartarchive.org/release-group/' + req.params.mbid + '/front.jpg'
       });
       albumN.save(err => {
 
@@ -152,16 +153,14 @@ router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
 
   })
     .catch(function (error) {
-
       console.log(error.message);
-
     });
 
   res.send("Added " + req.params.title);
 
 });
 
-var check = function (title) {
+const check = function (title) {
   return new Promise(
     function (resolve, reject) {
       Album.findOne({ 'title': title }, function (err, album) {

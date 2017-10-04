@@ -53,7 +53,7 @@
 
         <li class="inline" v-for="data in albumResult" v-bind:key="data">
 
-          <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.mbid   }}"> {{ data.title }} </router-link>
+          <router-link :to="{ name: 'album', params: {title:  data.title,   id: data.mbid, artist:data.artist  }}"> {{ data.title }} </router-link>
           <!--  fix routing!!! -->
 
           <!--  ADD BACK BUTTON -->

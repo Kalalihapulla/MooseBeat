@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQBK3KSGLPfXw8hpTf2ZD_UvO1qCh9M-Rwe8lwZ1oOmBzdYQ-EvRri-ej-8Fl6glbfShrGcfGiYtYOYW1rf023slTw_hQzYoBOiVsZSeoWtXA9OZ0VYLTAN8Yi6q1-JEaRd9CNnq3N73';
+const token = 'BQAgoBAytrLPnrleYetB0YFTeOghGYAH0kO2AKltiql8HZs8c7wVGEXYPkZ_VMggJ1RNKXUizXYjzQHL3afoG1n8etgmD6Eb9-45Hr2JctwnKKfixKU_3cvEvaSaKbwGBvCdPIo-L8-p';
 const rp = require('request-promise');
 const axios = require('axios');
 
@@ -73,7 +73,7 @@ router.get('/spotify/get/toptracks/:artistId', function (req, res) {
         if (!error && response.statusCode == 200) {
 
             res.send(body);
-// 
+            // 
         }
     }
 
@@ -97,24 +97,24 @@ router.get('/spotify/get/albums/:artistId', function (req, res) {
     );
 });
 router.get('/spotify/get/related/:artistId', function (req, res) {
-    
-        request.get('https://api.spotify.com/v1/artists/' + req.params.artistId + '/related-artists', {
-            'auth': {
-                'bearer': token
-            }
-        }, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-    
-                res.send(body);
-    
-            }
+
+    request.get('https://api.spotify.com/v1/artists/' + req.params.artistId + '/related-artists', {
+        'auth': {
+            'bearer': token
         }
-    
-        );
-    });
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+
+            res.send(body);
+
+        }
+    }
+
+    );
+});
 router.get('/spotify/get/token2/', function (req, res) {
-lul();
-res.send("w");
+    lul();
+    res.send("w");
 
 });
 
@@ -129,7 +129,7 @@ function lul() {
     })
         .then(function (response) {
             console.log(response);
-            
+
         })
         .catch(function (error) {
             console.log(error);

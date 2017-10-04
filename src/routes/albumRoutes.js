@@ -91,17 +91,6 @@ router.get('/albums/get/:artist/:title', function (req, res) {
 });
 
 
-router.get('/albums/cover/:mbid', function (req, res) {
-
-  request.get({ url: "https://coverartarchive.org/release-group/" + req.params.mbid }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log("cover retrieved");
-      res.send(JSON.parse(body));
-
-
-    }
-  });
-});
 
 router.get('/albums/cover/:mbid', function (req, res) {
 

@@ -31,6 +31,9 @@
             <li class="nav-item" >
               <router-link class="nav-link" v-bind:to="'/statistics'">Statistics</router-link>
             </li>
+             <li class="nav-item" >
+              <router-link class="nav-link" v-bind:to="'/artist/Metallica/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab/2ye2Wgw4gimLv2eAKyk1NB'">Artist</router-link>
+            </li>
             <li class="nav-item" v-if="this.username != null">
               <router-link class="nav-link owo" v-bind:to="'/profile/'+ username">Profile {{username}}</router-link>
             </li>

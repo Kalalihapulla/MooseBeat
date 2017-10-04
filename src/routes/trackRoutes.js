@@ -5,7 +5,7 @@ const rp = require('request-promise');
 
 router.get('/track/get/lyrics/:artist/:title', function (req, res) {
 
-    var options = {
+   const options = {
         uri: 'https://lyrix.herokuapp.com/api/find/' + req.params.artist + '/' + req.params.title,
         json: true // Automatically parses the JSON string in the response
     };
