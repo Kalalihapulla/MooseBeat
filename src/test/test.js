@@ -8,6 +8,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const request = require('request');
 const Review = require('./../models/review');
+const rp = require('request-promise');
 
 describe('User module', () => {
     describe('"User get"', () => {
@@ -19,6 +20,118 @@ describe('User module', () => {
                 done();
             });
         })
+    })
+    describe('"User add album"', () => {
+        it('should add album', (done) => {
+            User.findOne({ 'username': 'awa12' }, function (err, user) {
+
+                user.albums.push(
+                    { artist: "X Japan", title: "RTL", cover: 'cover', mbid: "ww" }
+                );
+                user.save(err => {
+                    if (err) throw err;
+                    console.log('Album saved to user successfully!');
+                    expect(user.albums[0].artist).to.equal("X Japan")
+                    done();
+                });
+
+            });
+        })
+    })
+})
+
+
+describe('Artist module', () => {
+    describe('"Artist info"', () => {
+        it('should get bbcinfo for metallica', (done) => {
+            request.get({
+                url: "http://musicbrainz.org/ws/2/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab?inc=url-rels&fmt=json", headers: {
+                    'User-Agent': 'MooseBeat/1.0.0 ( https://moosebeat.herokuapp.com/ )'
+                }
+            }, function (error, response, body) {
+                const result = JSON.parse(body);
+                expect(result.relations[0].type).to.equal('BBC Music page');
+                done();
+
+            });
+        })
+        it('should get type-id for metallica', (done) => {
+            request.get({
+                url: "http://musicbrainz.org/ws/2/artist/65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab?inc=url-rels&fmt=json", headers: {
+                    'User-Agent': 'MooseBeat/1.0.0 ( https://moosebeat.herokuapp.com/ )'
+                }
+            }, function (error, response, body) {
+                const result = JSON.parse(body);
+                expect(result.relations[1].direction).to.equal('forward');
+                done();
+
+            });
+        })
+
+    })
+})
+describe('Lyrix client', () => {
+    describe('"Lyric Data Fade"', () => {
+        it('should get enter sandman', (done) => {
+            const options = {
+                uri: 'https://lyrix.herokuapp.com/api/find/Metallica/Enter%20Sandman',
+                json: true // Automatically parses the JSON string in the response
+            };
+
+            rp(options)
+                .then(function (lyrics) {
+                    //console.log(JSON.stringify(lyrics.lyric));
+                    expect(lyrics.lyric).to.have.lengthOf.above(1200);
+                    done();
+
+                })
+                .catch(function (err) {
+
+
+                });
+
+        })
+        it('should get orion', (done) => {
+            const options = {
+                uri: 'https://lyrix.herokuapp.com/api/find/Metallica/Orion',
+                json: true // Automatically parses the JSON string in the response
+            };
+
+            rp(options)
+                .then(function (lyrics) {
+                    //console.log(JSON.stringify(lyrics.lyric));
+                    expect(lyrics.lyric).to.equal(" Instrumental");
+                    done();
+
+                })
+                .catch(function (err) {
+
+
+                });
+
+        })
+        it('should get kashmir', (done) => {
+            const options = {
+                uri: 'https://lyrix.herokuapp.com/api/find/Led%20Zeppelin/Kashmir',
+                json: true // Automatically parses the JSON string in the response
+            };
+
+            rp(options)
+                .then(function (lyrics) {
+                    //console.log(JSON.stringify(lyrics.lyric));
+                    expect(lyrics.lyric).to.have.lengthOf.above(1500);
+                    done();
+
+                })
+                .catch(function (err) {
+
+
+                });
+
+        })
+
+
+
     })
 })
 
@@ -37,7 +150,7 @@ describe('Api tests', () => {
           })
       }) */
 
-    describe('"Get"', () => {
+    describe('"Reviews"', () => {
         it('should get reviews for metallica', (done) => {
             Review.find({ artist_mbid: '65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab' }, function (err, result) {
                 console.log("Reviews retrieved");
