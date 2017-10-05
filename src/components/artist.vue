@@ -90,7 +90,7 @@
                   <li class="inline" v-else> Date: {{ data.release_date }} </li>
 
                   <li class="inline">
-                    <b-button target="_blank" :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+                    <b-button id="addButton" target="_blank" :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
                   </li>
                   <li class="inline">
                     <b-dropdown id="" text="Songs">
@@ -351,7 +351,7 @@ ul {
 }
 
 a {
-  color: #42b983;
+  color: #871ca5;
 }
 
 .albumTab {
@@ -621,4 +621,11 @@ audio {
   margin-right: auto;
 
 }
+
+#addButton {
+  color: white;
+  background: #871ca5;
+  border-color: #871ca5;
+}
+
 </style>
