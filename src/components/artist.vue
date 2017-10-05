@@ -475,13 +475,15 @@ audio {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  height: 35%;
+  height: 38%;
   width: 85%;
+  padding-bottom: 1%;
+  padding-top: 1%;
   margin: auto;
 }
 
 #artistDetails {
-  height: 50%;
+  height: 45%;
   width: 100%;
 }
 
@@ -602,5 +604,21 @@ audio {
 
 #artistFollow {
   float: right;
+}
+
+#artistTitle h1 {
+  color: #871ca5;
+  text-shadow:
+		-0.5px -0.5px 0 #000,
+		0.5px -0.5px 0 #000,
+		-0.5px 0.5px 0 #000,
+		0.5px 0.5px 0 #000;
+    font-weight: bold;
+    margin-top: 0.6em;
+    font-size: 3em;
+    width: 90%;
+     margin-left: auto;
+  margin-right: auto;
+
 }
 </style>

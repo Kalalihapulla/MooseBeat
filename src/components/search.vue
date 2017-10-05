@@ -24,7 +24,7 @@
 
           <ol>
             <li v-for="data in resultValue" v-bind:key="data">
-              <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id, spotify: data.spotify_id  }}"> {{ data.name }} </router-link>
+              <router-link id="resultPrint" :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id, spotify: data.spotify_id  }}"> {{ data.name }} </router-link>
 
             </li>
           </ol>
@@ -119,6 +119,7 @@ h1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 3em;
   font-size: 1.4em;
+  font-weight: bold;
  
 }
 
@@ -130,4 +131,15 @@ h1 {
   padding: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#resultPrint {
+  color: #871ca5;
+  text-shadow:
+		-0.5px -0.5px 0 #000,
+		0.5px -0.5px 0 #000,
+		-0.5px 0.5px 0 #000,
+		0.5px 0.5px 0 #000;
+    font-size: 1.3em;
+}
+
 </style>
