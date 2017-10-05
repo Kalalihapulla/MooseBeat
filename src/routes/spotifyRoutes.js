@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const token = 'BQA8-ngNNiQ1BfxeJtgdG-IkyqIrz7LbiPnA_Zl3aS1OC3YtsAToisshnuhWk3y2UkC040tLM2kQDsVIMO9cHHRKcpZdfVPl69Jvqsz9RhZKFg_Ewkowcvq5laOtE8yDky8xaMGEk5rz';
+const token = 'BQComJzuneS8t4dE5LjwXRMH9nXMoGXVgTqy5djX4waNIGvbBubBYgI3nDLDONbJBRgTwX2IZ-i65C7o9km71MiLYOE18SvLZqYCp79voslONe6hR1fTINoNCo_PibibjmFeuGUCT8pF';
 const rp = require('request-promise');
 const axios = require('axios');
 
@@ -104,7 +104,7 @@ router.get('/spotify/get/related/:artistId', function (req, res) {
         }
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-
+            console.log("Spotify related");
             res.send(body);
 
         }
