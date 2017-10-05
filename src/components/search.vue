@@ -1,15 +1,15 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container>
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
         <div>
           <br>
           <H1>Search for an artist</H1>
-          <form @submit.stop.prevent="artistSearch">
-            <b-form-input type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
+          <form id="searchBar" @submit.stop.prevent="artistSearch">
+            <b-form-input id="inputField" type="text" placeholder="For example Metallica..." v-model="searchValue"></b-form-input>
             <p></p>
-            <b-button type="submit" variant="primary">Search!</b-button>
+            <b-button type="submit" class="search-but shadow">Search</b-button>
           </form>
         </div>
       </b-col>
@@ -19,17 +19,19 @@
     <p></p>
     <b-row id="searchResults">
       <b-col></b-col>
-      <b-col cols="8">
-        <ol>
-          <li v-for="data in resultValue" v-bind:key="data">
-            <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id, spotify: data.spotify_id  }}"> {{ data.name }} </router-link>
+      <b-col cols="10">
+        <div id="searchBg" v-if="seen">
 
-          </li>
-        </ol>
+          <ol>
+            <li v-for="data in resultValue" v-bind:key="data">
+              <router-link :to="{ name: 'artist', params: { name:  data.name,   id: data.musicbrainz_id, spotify: data.spotify_id  }}"> {{ data.name }} </router-link>
+
+            </li>
+          </ol>
+        </div>
       </b-col>
       <b-col></b-col>
     </b-row>
-    <iframe src="https://open.spotify.com/embed/track/4W6UCSL6BSF651pm6qwOoV" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
 
   </b-container>
 </template>
@@ -41,7 +43,7 @@ export default {
   name: 'search',
 
   data: {
-    searchValue: 'searchValue',
+    searchValue: '',
     resultValue: "",
   },
 
@@ -51,7 +53,8 @@ export default {
   data() {
     return {
       resultValue: "",
-      searchValue: ""
+      searchValue: "",
+      seen: false
     }
   },
 
@@ -63,7 +66,11 @@ export default {
         .then((response) => {
 
           this.resultValue = response.data.data;
-
+         
+          if ((typeof this.resultValue[0] !== 'undefined') && (this.searchvalue !== '')) {
+           
+            this.seen = true;
+          }
 
         })
         .catch(function(error) {
@@ -89,5 +96,38 @@ export default {
 
 #searchResults {
   font-size: 1.5em;
+}
+
+.search-but {
+  color: #fff;
+  background-color: #9C27B0;
+  border-color: #9C27B0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 2em;
+  width: 30%;
+}
+
+h1 {
+  color: white;
+}
+
+#searchBar {
+  margin-top: 2em;
+}
+
+#inputField {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 3em;
+  font-size: 1.4em;
+ 
+}
+
+#searchBg {
+  background: whitesmoke;
+  border-radius: 0.5em;
+  width: 100%;
+  margin-top: 2em;
+  padding: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 </style>

@@ -2,7 +2,7 @@
     <div class="login">
         <div class="center_div">
             <form action="/login" method="post">
-            <br>
+                <br>
                 <div class="form-group">
                     <label for="user">Username</label>
                     <input id="user" type="text" class="form-control" name="username">
@@ -12,11 +12,11 @@
                     <input id="password" type="password" class="form-control" name="password">
                 </div>
 
-                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+                <button id="searchBut" type="submit" class="btn btn-warning btn-lg shadow">Login</button>
             </form>
         </div>
         <br>
-        <b-btn v-b-modal="'regform'">Register</b-btn>
+        <b-btn class="shadow" v-b-modal="'regform'">Register</b-btn>
         <register></register>
     </div>
 </template>
@@ -101,5 +101,23 @@ li {
 
 a {
     color: #42b983;
+}
+
+label {
+    color: white;
+}
+
+input {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#searchBut {
+    background-color: #9C27B0;
+    border-color: #9C27B0;
+    color: white;
 }
 </style>

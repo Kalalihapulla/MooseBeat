@@ -236,7 +236,7 @@
 
             </li>
 
-            <p>More stuff...</p>
+          
           </ul>
         </div>
 
@@ -333,7 +333,9 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
+h1 {
+  color: black;
+}
 h2 {
   font-weight: normal;
 }
@@ -430,10 +432,12 @@ audio {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
 .review-block-description {
   font-size: 13px;
+  word-wrap: break-word;
 }
 
 .artistInfo {
@@ -444,6 +448,7 @@ audio {
   position: fixed;
   background: whitesmoke;
   border-radius: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .artistContent {
@@ -453,6 +458,7 @@ audio {
   background: whitesmoke;
   border-radius: 1em;
   padding-top: 1%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #spotifyPlayer {
