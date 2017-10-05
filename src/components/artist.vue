@@ -95,7 +95,7 @@
                   <li class="inline">
                     <b-dropdown id="" text="Songs">
 
-                      <b-dropdown-item-button disabled>I'm a button, but disabled!</b-dropdown-item-button>
+                      <b-dropdown-item-button disabled>Coming soon</b-dropdown-item-button>
 
                     </b-dropdown>
                   </li>
@@ -236,7 +236,6 @@
 
             </li>
 
-          
           </ul>
         </div>
 
@@ -336,6 +335,7 @@ export default {
 h1 {
   color: black;
 }
+
 h2 {
   font-weight: normal;
 }
@@ -543,6 +543,7 @@ audio {
 #recText {
   font-weight: bold;
   font-size: 3em;
+  color: white;
 }
 
 #recSlide {
@@ -551,6 +552,7 @@ audio {
   background: #a3a8af;
   margin: auto;
   border-radius: 4px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #albumlist {
@@ -565,6 +567,9 @@ audio {
   bottom: 0.8em;
   right: 0;
   opacity: 0.8;
+  color: #871ca5 !important;
+  background: #871ca5;
+  border-color: #871ca5;
 }
 
 #recFollow {
@@ -608,18 +613,16 @@ audio {
 
 #artistTitle h1 {
   color: #871ca5;
-  text-shadow:
-		-0.5px -0.5px 0 #000,
-		0.5px -0.5px 0 #000,
-		-0.5px 0.5px 0 #000,
-		0.5px 0.5px 0 #000;
-    font-weight: bold;
-    margin-top: 0.6em;
-    font-size: 3em;
-    width: 90%;
-     margin-left: auto;
+  text-shadow: -0.5px -0.5px 0 #000,
+  0.5px -0.5px 0 #000,
+  -0.5px 0.5px 0 #000,
+  0.5px 0.5px 0 #000;
+  font-weight: bold;
+  margin-top: 0.6em;
+  font-size: 3em;
+  width: 90%;
+  margin-left: auto;
   margin-right: auto;
-
 }
 
 #addButton {
@@ -627,5 +630,4 @@ audio {
   background: #871ca5;
   border-color: #871ca5;
 }
-
 </style>
