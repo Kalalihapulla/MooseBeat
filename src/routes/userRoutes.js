@@ -158,7 +158,7 @@ router.get('/user/albums/add/:artist/:title/:mbid', isLoggedIn, function (req, r
       console.log(error.message);
     });
 
-  res.send("Added " + req.params.title);
+  res.send("Added");
 
 });
 

@@ -90,7 +90,8 @@
                   <li class="inline" v-else> Date: {{ data.release_date }} </li>
 
                   <li class="inline">
-                    <b-button id="addButton" target="_blank" :href="'/api/user/albums/add/'+data.artist_name + '/' +data.title + '/' +data.album_musicbrainz_id" v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary">Add</b-button>
+
+                    <button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary" v-on:click="add(data.artist_name,data.title,data.album_musicbrainz_id)">Add</button>
                   </li>
                   <li class="inline">
                     <b-dropdown id="" text="Songs">
@@ -324,9 +325,23 @@ export default {
 
   },
   methods: {
-    coverNotFound() {
-      document.getElementByClass('albumPicture').src = 'http://sher-jatt.com/mp3/mcov/57366.jpg';
+
+    add: function(artist, title, mbid) {
+      axios.get('/api/user/albums/add/' + artist + '/' + title + '/' + mbid)
+        .then((response) => {
+          if (response.data == "Added")
+            alert(title + " added");
+          else
+            alert("Log in!");
+
+
+        })
+        .catch(function(error) {
+
+        });
+
     }
+
   }
 }
 </script>
@@ -552,7 +567,7 @@ audio {
   background: #a3a8af;
   margin: auto;
   border-radius: 4px;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #albumlist {
