@@ -9,8 +9,10 @@ const Album = require('./../models/album');
 
 router.get('/user/get/', function (req, res) {
 
-  res.send(req.user.username);
-
+  if (isLoggedIn)
+    res.send(req.user.username);
+  else
+    res.send(null);
 });
 
 
@@ -104,7 +106,7 @@ router.get('/user/create/:name/:password', function (req, res) {
   });
 });
 
-router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
+router.get('/user/albums/add/:artist/:title/:mbid', isLoggedIn, function (req, res) {
   //http://api.onemusicapi.com/20151208/images/discogs/10038433/1491656932-6796.jpeg.jpg?user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
 
   User.findOne({ 'username': req.user.username }, function (err, user) {
@@ -121,7 +123,7 @@ router.get('/user/albums/add/:artist/:title/:mbid', function (req, res) {
 
   });
 
- const lul = check(req.params.title).then(function (fulfilled) {
+  const lul = check(req.params.title).then(function (fulfilled) {
 
     if (fulfilled == null) {
 
@@ -219,6 +221,12 @@ router.get('/user/albums/get/:username', function (req, res) {
 
 
 });
+function isLoggedIn(req, res, next) {
 
+  if (req.isAuthenticated())
+    return next();
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
 
 module.exports = router;

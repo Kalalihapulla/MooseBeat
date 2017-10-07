@@ -19,7 +19,7 @@ router.get('/artists/:query/', function (req, res) {
   request.get({ url: "http://api.musicgraph.com/api/v2/artist/suggest?api_key=121e2a1c43b279d6e8e80c1b3ed2e04d&prefix=" + req.params.query + "&limit=10" }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log(req.params.query);
-
+ 
       res.send(body);
 
     }
@@ -34,6 +34,7 @@ router.get('/artists/info/:mbid/', function (req, res) {
       'User-Agent': 'MooseBeat/1.0.0 ( https://moosebeat.herokuapp.com/ )'
     }
   }, function (error, response, body) {
+    if (error) throw error;
 
     console.log("Info retrieved");
     let result = JSON.parse(body);
@@ -88,7 +89,7 @@ router.get('/artists/info/:mbid/', function (req, res) {
       }
       else if (urlN.includes("spotify")) {
         info.push({ url: urlN, type: typeN, picture: spotify, name: 'Spotify' });
-  
+
       }
     }
 

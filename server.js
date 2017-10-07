@@ -54,14 +54,10 @@ router.post('/login', passport.authenticate('local-login', {
 
 }));
 router.get('/logout', function (req, res) {
-  console.log(req.user.username + " logout");
+  console.log( "logout");
   req.logout();
   res.redirect('/');
 
-});
-router.get('/user', isLoggedIn, function (req, res) {
-
-  res.redirect('/profile/' + req.user.username);
 });
 
 function isLoggedIn(req, res, next) {

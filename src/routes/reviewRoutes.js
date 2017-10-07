@@ -55,6 +55,7 @@ router.get('/reviews/get/:mbid', function (req, res) {
         /*   result.push(
               { average: Math.round((total / count) * 10) / 10 }
           ); */
+          if (err) throw err;
 
         res.send(result);
 
@@ -66,6 +67,7 @@ router.get('/reviews/get/user/:username', function (req, res) {
 
     Review.find({ username: req.params.username }, function (err, result) {
         console.log("Reviews for " + req.params.username);
+        if (err) throw err;
         res.send(result);
     });
 });
