@@ -277,7 +277,7 @@ export default {
      axios.get("/api/artists/bio/" + this.$route.params.id)
       .then((response) => {
          alert("WAWRAWREAWR");
-        this.artistDescription = response.data.bio.media.type;
+        this.artistDescription = response.data.media.data.text;
         console.log(this.artistDescription);
         alert(this.artistDescription);
       
