@@ -18,7 +18,7 @@
 
           <div id="profileNavRight">
 
-            <iframe class="someItem" src="https://embed.spotify.com/follow/1/?uri=spotify:user:metallicaofficial&size=detail&theme=light" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+            <iframe class="someItem" src="https://embed.spotify.com/follow/1/?uri=spotify:user:testuserl&size=detail&theme=light" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
             <iframe class="someItem" allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fmetallica&color=orange_white&size=64" style="width: 64px; height: 64px;"></iframe>
           </div>
         </b-col>
