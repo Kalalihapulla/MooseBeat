@@ -46,7 +46,9 @@
 
         <div id="artistDesc">
 
-          <H1>This band is a band</H1>
+          
+          <h1> asdasdasd {{this.artistDescription}}</h1>
+
           <iframe id="artistFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
           <div id="rating-block">
@@ -262,6 +264,7 @@ export default {
       albumId: '',
       playerId: '',
       spotifyAlbums: '',
+      artistDescription: '',
       average: 0,
 
       id: this.$route.params.id,
@@ -271,6 +274,19 @@ export default {
   },
   created: function() {
 
+     axios.get("/api/artists/bio/" + this.$route.params.id)
+      .then((response) => {
+         alert("WAWRAWREAWR");
+        this.artistDescription = response.data.bio.media.type;
+        console.log(this.artistDescription);
+        alert(this.artistDescription);
+      
+
+      })
+      .catch(function(error) {
+
+      });
+      
 
     axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
       .then((response) => {
