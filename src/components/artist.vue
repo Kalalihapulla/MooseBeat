@@ -10,18 +10,18 @@
         </div>
 
         <div id="artistDetails">
-          <ul>
-            <li> Year formed: </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
-            <li> .... </li>
+          <ul v-if="$route.params.name == 'Metallica'">
+            <li> Year formed: 1981</li>
+            <li> Year to: Present</li>
+            <li> James Hetfield</li>
+            <li> Lars Ulrich</li>
+            <li> Kirk Hammett </li>
+            <li> Robert Trujillo</li>
+            <li> Dave Mustaine </li>
+            <li> Cliff Burton</li>
+            <li> Jason Newsted </li>
+       
 
-            <p>More stuff...</p>
           </ul>
           <div id="infoList">
 
@@ -46,7 +46,6 @@
 
         <div id="artistDesc">
 
-          
           <h1> Description{{this.artistDescription}}</h1>
 
           <iframe id="artistFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
@@ -274,17 +273,17 @@ export default {
   },
   created: function() {
 
-     axios.get("/api/artists/bio/" + this.$route.params.id)
+    axios.get("/api/artists/bio/" + this.$route.params.id)
       .then((response) => {
         this.artistDescription = response.data.media.data.text;
 
-      
+
 
       })
       .catch(function(error) {
 
       });
-      
+
 
     axios.get("/api/spotify/get/related/" + this.$route.params.spotify)
       .then((response) => {
