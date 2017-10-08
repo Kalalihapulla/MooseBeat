@@ -29,7 +29,7 @@ router.get('/artists/:query/', function (req, res) {
 });
 router.get('/artists/bio/:mbid', function (req, res) {
 
-  request.get({ url: "http://api.openaura.com/v1/info/artists/"+req.params.mbid+"?id_type=musicbrainz%3Agid&api_key=dabdfde06848e9adabe05b1862d4e0c4e84a3684" }, function (error, response, body) {
+  request.get({ url: "http://api.openaura.com/v1/info/artists/"+req.params.mbid+"/bio?id_type=musicbrainz%3Agid&api_key=dabdfde06848e9adabe05b1862d4e0c4e84a3684" }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log(req.params.query);
 
