@@ -221,6 +221,32 @@ router.get('/user/albums/get/:username', function (req, res) {
 
 
 });
+router.get('/user/add/listened/:username/:artist/:title', function (req, res) {
+
+
+  User.findOne({ 'username': req.params.username }, function (err, user) {
+
+
+
+    user.listened.push(
+      { artist: req.params.artist, title: req.params.title }
+    );
+
+    user.save(err => {
+
+      if (err) throw err;
+
+      console.log('Listened saved to user successfully!');
+    });
+
+    res.send("Added");
+
+
+
+  });
+
+
+});
 function isLoggedIn(req, res, next) {
 
   if (req.isAuthenticated())
