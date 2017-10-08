@@ -37,7 +37,7 @@
         </div>
 
         <div id="spotifyCont">
-          <iframe id="spotifyPlayer" src="https://open.spotify.com/embed?uri=spotify%3Aalbum%3A41bTjcSaiEe4G40RVVHbux&theme=white" frameborder="0" allowtransparency="true"></iframe>
+          <iframe id="spotifyPlayer" :src="'https://open.spotify.com/embed?uri=spotify%3Aalbum%3A'  + this.playerId + '&theme=white'" frameborder="0" allowtransparency="true"></iframe>
         </div>
 
       </div>
@@ -92,13 +92,10 @@
                   <li class="inline">
 
                     <button v-b-tooltip.hover.auto title="Add this album to your profile" type="submit" variant="primary" v-on:click="add(data.artist_name,data.title,data.album_musicbrainz_id)">Add</button>
+                    
                   </li>
                   <li class="inline">
-                    <b-dropdown id="" text="Songs">
-
-                      <b-dropdown-item-button disabled>Coming soon</b-dropdown-item-button>
-
-                    </b-dropdown>
+                 <button v-b-tooltip.hover.auto title="Listen to this album" type="submit" variant="primary" v-on:click="updateSpotify(data.title)">Listen</button>
                   </li>
                 </ul>
 
@@ -262,7 +259,11 @@ export default {
       infoResult: '',
       spotifyResult: '',
       recResult: '',
+      albumId: '',
+      playerId: '',
+      spotifyAlbums: '',
       average: 0,
+      
       id: this.$route.params.id,
       username: null,
 
@@ -288,6 +289,7 @@ export default {
     axios.get("/api/albums/" + this.$route.params.name)
       .then((response) => {
         this.albumResult = response.data.data;
+
       })
       .catch(function(error) {
         alert(error);
@@ -321,6 +323,19 @@ export default {
       })
       .catch(function(error) {
         alert(error);
+
+        this.albumResult
+      });
+
+       axios.get("/api/spotify/get/albums/" + this.$route.params.spotify)
+      .then((response) => {
+        this.spotifyAlbums = response.data.items;
+        this.playerId = this.spotifyAlbums[0].id;
+
+       
+      })
+      .catch(function(error) {
+        alert(error);
       });
 
   },
@@ -340,8 +355,22 @@ export default {
 
         });
 
+    },
+
+    updateSpotify: function(albumId) {
+        
+         albumId = albumId.replace(/\s+/g, '').toLowerCase();
+
+      for (let data of this.spotifyAlbums) {
+
+          alert(data.name.replace(/\s+/g, '').toLowerCase());
+          
+          this.playerId = data.id;
+          break;
+        }
     }
 
+  
   }
 }
 </script>
