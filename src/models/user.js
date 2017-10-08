@@ -14,6 +14,7 @@ const userSchema = new Schema({
   location: String,
   reviews: [{}], 
   albums: [{}],
+  listened: [{}],
   created_at: Date,
   updated_at: Date,
   _id: Number
