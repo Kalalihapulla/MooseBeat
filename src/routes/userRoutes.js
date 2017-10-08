@@ -247,6 +247,24 @@ router.get('/user/add/listened/:username/:artist/:title', function (req, res) {
 
 
 });
+router.get('/user/get/listened/:username/', function (req, res) {
+
+
+  User.findOne({ 'username': req.params.username }, function (err, user) {
+
+    if (err) throw err;
+
+
+
+
+    res.send(user.listened);
+
+
+
+  });
+
+
+});
 function isLoggedIn(req, res, next) {
 
   if (req.isAuthenticated())
