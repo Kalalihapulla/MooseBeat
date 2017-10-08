@@ -47,7 +47,7 @@
         <div id="artistDesc">
 
           
-          <h1> asdasdasd {{this.artistDescription}}</h1>
+          <h1> Description{{this.artistDescription}}</h1>
 
           <iframe id="artistFollow" :src="'https://open.spotify.com/follow/1/?uri=spotify:artist:'+$route.params.spotify+'&size=detail&theme=light'" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 
@@ -276,10 +276,8 @@ export default {
 
      axios.get("/api/artists/bio/" + this.$route.params.id)
       .then((response) => {
-         alert("WAWRAWREAWR");
         this.artistDescription = response.data.media.data.text;
-        console.log(this.artistDescription);
-        alert(this.artistDescription);
+
       
 
       })
@@ -659,7 +657,8 @@ audio {
   margin: auto;
   margin-top: 1em !important;
   border-radius: 4px;
-  padding-top: 0.5em;
+  padding-top: 0.7em;
+  padding-left: 1em;
 }
 
 #rating-block {

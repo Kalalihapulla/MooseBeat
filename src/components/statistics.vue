@@ -101,4 +101,9 @@ thead {
     border: 4px solid #be45e0;
    
 }
+
+th {
+  text-align: center;
+  font-size: 1.5em;
+}
 </style>
