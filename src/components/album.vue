@@ -4,7 +4,7 @@
     <div id="lyricTab">
       <!-- Tabs with card integration -->
       <b-card>
-        <h2>Song lyrics</h2>
+        <h2>Song lyrics: {{$route.params.title}}</h2>
         <br>
 
         <b-tabs small card ref="tabs" v-model="tabIndex">
