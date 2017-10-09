@@ -10,7 +10,9 @@
         <b-tabs small card ref="tabs" v-model="tabIndex">
 
           <b-card>
+          <pre>
           {{this.lyricData}}
+          </pre>
             </b-card>
 
           <div v-for="data in trackData" :key="data">
@@ -85,8 +87,6 @@ export default {
         .then((response) => {
 
           this.lyricData = response.data.lyric;
-
-
 
         })
         .catch(function(error) {
