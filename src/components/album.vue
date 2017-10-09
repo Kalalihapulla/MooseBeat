@@ -1,24 +1,57 @@
 <template>
   <div class="album">
- <p>{{this.lyricData}} </p>
-    <ul>
-      <li v-for="data in trackData" :key="data">
-        <div class="albumPic">
-          <img class="albumPicture" :src="data.images[0].url + '?user_key=468c1cfb7b96f816544e86fa0698b0cd&inc=images&maxResultCount=1'" />
-        </div>
-        <div v-for="data2 in data.media[0].tracks" :key="data2">
 
-          <p> {{data2.title}} </p>
-          <button v-on:click="say(data.artist,data2.title)">Get lyrics</button>
+    <div id="lyricTab">
+      <!-- Tabs with card integration -->
+      <b-card>
+        <h2>Song lyrics</h2>
+        <br>
 
-        </div>
-      </li>
+        <b-tabs small card ref="tabs" v-model="tabIndex">
 
-    </ul>
-   
-    <!-- <a :href='data.url' target="_blank">
-                                                  <img class="albumPicture" :src='data.picture' alt='img' />
-                                                </a> -->
+          <b-card>
+          {{this.lyricData}}
+            </b-card>
+
+          <div v-for="data in trackData" :key="data">
+
+            <b-tab v-for="data2 in data.media[0].tracks" :key="data2" v-on:click="say(data.artist,data2.title)" :title="data2.title">
+
+    
+            
+            </b-tab>
+
+          </div>
+
+        </b-tabs>
+
+        <span class="text-muted">Current Tab: {{tabIndex + 1}}</span>
+      </b-card>
+
+      <!-- Control buttons-->
+
+    </div>
+  </div>
+
+  <!-- <p>{{this.lyricData}} </p>
+      <ul>
+        <li v-for="data in trackData" :key="data">
+          <div class="albumPic">
+            <img class="albumPicture" :src="data.images[0].url + '?user_key=468c1cfb7b96f816544e86fa0698b0cd&inc=images&maxResultCount=1'" />
+          </div>
+          <div v-for="data2 in data.media[0].tracks" :key="data2">
+
+            <p> {{data2.title}} </p>
+            <button v-on:click="say(data.artist,data2.title)">Get lyrics</button>
+
+          </div>
+        </li>
+
+      </ul> -->
+
+  <!-- <a :href='data.url' target="_blank">
+                                                    <img class="albumPicture" :src='data.picture' alt='img' />
+                                                  </a> -->
 
   </div>
 </template>
@@ -31,7 +64,8 @@ export default {
     return {
       albumData: '',
       trackData: '',
-      lyricData: ''
+      lyricData: '',
+      abIndex: 1,
     }
   },
   created: function() {
@@ -39,7 +73,7 @@ export default {
       .then((response) => {
         this.trackData = response.data;
         this.albumData = response.data;
-      
+
       })
       .catch(function(error) {
 
@@ -49,7 +83,9 @@ export default {
     say: function(artist, title) {
       axios.get("/api/track/get/lyrics/" + artist + "/" + title)
         .then((response) => {
+
           this.lyricData = response.data.lyric;
+
 
 
         })
@@ -102,5 +138,13 @@ a {
   height: 100%;
   max-width: 100%;
   max-height: 100%;
+}
+
+#lyricTab {
+  width: 90%;
+  margin-top: 5em;
+  margin-bottom: 1em;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

@@ -54,7 +54,7 @@ router.get('/albums/:artist', function (req, res) {
 router.get('/albums/get/:artist/:title', function (req, res) {
   //"http://api.onemusicapi.com/20151208/release?title=" + req.params.title + "&artist=" + req.params.artist + "&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1"
   http://api.onemusicapi.com/20151208/release?title=Master%20Of%20puppets&artist=Metallica&user_key=00c4333119af814c9d614cc8a71ece61&inc=images&maxResultCount=1
-  request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + req.params.title + "&artist=" + req.params.artist + "&user_key=468c1cfb7b96f816544e86fa0698b0cd&inc=images&maxResultCount=1" }, function (error, response, body) {
+  request.get({ url: "http://api.onemusicapi.com/20151208/release?title=" + req.params.title + "&artist=" + req.params.artist + "&user_key=27df6d929cb54a3c965551368fe571b0&inc=images&maxResultCount=1" }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       console.log(body.title);
 
