@@ -13,14 +13,12 @@
           <ul v-if="$route.params.name == 'Metallica'">
             <li> Year formed: 1981</li>
             <li> Year to: Present</li>
+            <br>
             <li> James Hetfield</li>
             <li> Lars Ulrich</li>
             <li> Kirk Hammett </li>
             <li> Robert Trujillo</li>
-            <li> Dave Mustaine </li>
-            <li> Cliff Burton</li>
-            <li> Jason Newsted </li>
-       
+            <br>
 
           </ul>
           <div id="infoList">
@@ -165,6 +163,42 @@
             </div>
           </div>
 
+           <div id="topSongs">
+
+          <table class="table table-responsive">
+
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Album</th>
+                <th>Popularity</th>
+                <th>Sample</th>
+                <th>Spotify</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="data in spotifyResult" v-bind:key="data">
+                <td class="tableItem">{{data.name}}</td>
+                <td class="tableItem"> <img :src="data.album.images[2].url" alt="N/A"></td>
+                <td class="tableItem">{{data.popularity}}</td>
+                <td class="tableItem">
+                  <audio controls>
+                    <source :src="data.preview_url" type="audio/mpeg">
+                  </audio>
+                </td>
+                <td class="tableItem">
+                  <iframe class="tableItem" :src="'https://open.spotify.com/embed?uri='+data.uri" frameborder="0" allowtransparency="true"></iframe>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+    
+        </div>
+
           <div id="review">
             <ul>
               <li v-for="data in reviewResult" v-bind:key="data">
@@ -210,33 +244,7 @@
             </ul>
           </div>
         </div>
-        <div id="artistStuff">
-
-          <ul class="list-group row">
-            <li v-for="data in spotifyResult" v-bind:key="data" class="col-sm-12">
-              <div class="col-sm-2">
-                {{data.name}}
-              </div>
-              <div class="col-sm-2">
-                <img class="topImage" :src="data.album.images[2].url" alt="N/A">
-
-              </div>
-
-              <div class="col-sm-12">
-                Popularity {{data.popularity}}
-              </div>
-              <div class="col-sm-12">
-
-                <audio controls>
-                  <source :src="data.preview_url" type="audio/mpeg">
-                </audio>
-              </div>
-              <iframe :src="'https://open.spotify.com/embed?uri='+data.uri" frameborder="0" allowtransparency="true"></iframe>
-
-            </li>
-
-          </ul>
-        </div>
+       
 
         <div id="artistRecommendations">
 
@@ -517,6 +525,7 @@ audio {
   background: whitesmoke;
   border-radius: 1em;
   padding-top: 1%;
+  padding-bottom: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -553,6 +562,9 @@ audio {
 #reviewButton {
   width: 90%;
   margin-top: 2em;
+  color: white;
+  background: #871ca5;
+  border-color: #871ca5;
 }
 
 #newReview {
@@ -689,5 +701,28 @@ audio {
   color: white;
   background: #871ca5;
   border-color: #871ca5;
+}
+
+th {
+  text-align: center;
+}
+
+.tableItem {
+  margin: auto;
+  height: 5em;
+  vertical-align: middle;
+  
+}
+
+audio {
+  width: 15em;
+}
+
+#topSongs {
+  width: 90%;
+  background: white;
+  margin: auto;
+  border-radius: 1em;
+  
 }
 </style>
