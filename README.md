@@ -1,6 +1,6 @@
 # moosebeat
 
-> dead moose meat https://moosebeat.herokuapp.com/
+> dead moose meat /offline (APIs are down)
 
 ## Build Setup
 
